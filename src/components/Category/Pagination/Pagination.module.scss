@@ -1,0 +1,86 @@
+.container {
+  margin-top: 31px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .pagination {
+    display: flex;
+    gap: 20px;
+
+    button {
+      height: 40px;
+      width: 40px;
+      border: 1px solid transparent;
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      font-size: 20px;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        font-size: 22px;
+      }
+    }
+    .prev,
+    .next {
+      font-size: 30px;
+      color: #c95c3f;
+    }
+
+    .prev {
+      .icon {
+        transition: all 0.2s ease-in-out;
+      }
+
+      &:hover {
+        font-size: 30px;
+
+        .icon {
+          transform: translateX(-3px);
+        }
+      }
+    }
+
+    .next {
+      .icon {
+        transition: all 0.2s ease-in-out;
+      }
+
+      &:hover {
+        font-size: 30px;
+
+        .icon {
+          transform: translateX(3px);
+        }
+      }
+    }
+
+    .active {
+      border-color: #c95c3f;
+      color: #c95c3f;
+    }
+  }
+
+  .link {
+    a {
+      text-decoration: none;
+      color: #c95c3f;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+
+      .icon {
+        transition: all 0.2s ease-in-out;
+        margin-left: 10px;
+        font-size: 25px;
+      }
+
+      &:hover {
+        .icon {
+          transform: translateX(5px);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100px;
+
+  .content {
+    text-align: center;
+
+    .btn {
+      margin-top: 20px;
+      height: 50px;
+      width: 250px;
+    }
+  }
+}

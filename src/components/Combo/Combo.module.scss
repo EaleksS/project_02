@@ -1,0 +1,15 @@
+.combo {
+  margin-top: 100px;
+
+  .nav {
+    display: flex;
+    gap: 40px;
+
+    h2 {
+      font-size: 48px;
+      color: #1b1b1b;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
+}

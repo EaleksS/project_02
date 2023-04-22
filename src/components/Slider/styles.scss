@@ -1,0 +1,134 @@
+#app {
+  height: 100%;
+}
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: calc(50% - 50px);
+  background: #fff;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  z-index: 2;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: #c95c3f;
+  cursor: pointer;
+
+  &:active {
+    transform: scale(0.95);
+  }
+  .arrow_prev,
+  .arrow_next {
+    transition: all 0.2s ease-in-out;
+  }
+
+  &:hover {
+    .arrow_prev {
+      transform: translateX(-5px);
+    }
+    .arrow_next {
+      transform: translateX(5px);
+    }
+  }
+}
+
+.prev {
+  left: -50px;
+}
+
+.next {
+  right: -50px;
+}
+
+.slider_container {
+  position: relative;
+  user-select: none;
+  margin-top: 48px;
+}
+
+.mySwiper {
+  height: 424px;
+}
+
+.more {
+  position: absolute;
+  bottom: -86px;
+  left: 50px;
+  background: #e07153;
+  height: 172px;
+  width: 172px;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  @media (min-width: 700px) {
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: scale(1.025);
+    }
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2px;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}

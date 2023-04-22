@@ -11,7 +11,7 @@ export const Layout: FC<Props> = ({ children }): JSX.Element => {
   return (
     <React.Fragment>
       <Header />
-      {children}
+      <main>{children}</main>
       <Footer />
     </React.Fragment>
   );
