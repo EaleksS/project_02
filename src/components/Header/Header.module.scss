@@ -1,0 +1,152 @@
+.header {
+  position: relative;
+
+  .container {
+    max-width: 1224px;
+    margin: 0 auto;
+    display: flex;
+
+    .logo {
+      display: flex;
+      align-items: center;
+
+      cursor: pointer;
+
+      img {
+        width: 134px;
+        height: 130px;
+      }
+    }
+  }
+
+  .top {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .list {
+      display: flex;
+      list-style: none;
+
+      li {
+        margin: 0 20px;
+        cursor: pointer;
+      }
+    }
+
+    .tel {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+
+      .icon {
+        transform: translateY(2px);
+        color: #e07153;
+      }
+
+      span {
+        font-weight: 500;
+
+        a {
+          margin-left: 5px;
+          text-decoration: none;
+        }
+      }
+
+      .datetime {
+        font-weight: normal;
+        opacity: 0.5;
+      }
+    }
+
+    .basket {
+      display: flex;
+      height: 48px;
+      width: 134px;
+      background: #f5f5f5;
+      border-radius: 6px;
+      align-items: center;
+
+      .count {
+        width: 65%;
+        display: flex;
+        justify-content: center;
+        border-right: 1px solid #fff;
+      }
+
+      .basket_icon {
+        width: 35%;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        font-size: 30px;
+
+        span {
+          font-size: 14px;
+          position: absolute;
+          background: #e07153;
+          display: flex;
+          top: -5px;
+          right: 5px;
+          border-radius: 50%;
+          min-width: 20px;
+          min-height: 20px;
+          justify-content: center;
+          align-items: center;
+          color: #fff;
+        }
+      }
+    }
+
+    .user {
+      height: 48px;
+      width: 48px;
+      background: #f5f5f5;
+      border-radius: 6px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+    }
+  }
+
+  .down {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &::after {
+      content: '';
+      position: absolute;
+      background: #f5f5f5;
+      top: 80px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+    }
+
+    ul {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      li {
+        list-style: none;
+        cursor: pointer;
+        transform: translateY(5px);
+
+        @media (min-width: 700px) {
+          transition: all 0.2s ease;
+
+          &:hover {
+            transform: scale(1.05) translateY(5px);
+          }
+        }
+      }
+    }
+  }
+}

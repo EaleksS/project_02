@@ -1,0 +1,27 @@
+.btn {
+  border: 2px solid #333;
+  background: transparent;
+  color: #333;
+
+  padding: 0 20px;
+  height: 40px;
+  font-size: 18px;
+  transition: all 0.5s;
+  cursor: pointer;
+  border-radius: 5px;
+
+  &:active {
+    background: rgba($color: #fff, $alpha: 0.5);
+  }
+
+  @media (min-width: 700px) {
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.active {
+  background: #333;
+  color: #fff;
+}
