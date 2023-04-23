@@ -1,10 +1,15 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import styles from './Header.module.scss';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { RiShoppingBasketFill, RiUserFill } from 'react-icons/ri';
 import { Text } from '../UI/Text/Text';
+import { Modal } from '../UI/Modal/Modal';
+import { ModalAuth } from '../UI/ModalAuth/ModalAuth';
 
 export const Header: FC = (): JSX.Element => {
+  const [isActive, setIsActive] = useState(false);
+  const [isActiveAuth, setIsActiveAuth] = useState(false);
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -37,17 +42,29 @@ export const Header: FC = (): JSX.Element => {
               </span>
               <span className={styles.datetime}>c 10:00 до 23:00</span>
             </div>
-            <div className={styles.basket}>
+            <div
+              className={styles.basket}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsActive((prev) => !prev);
+              }}
+            >
               <div className={styles.count}>0 ₽</div>
               <div className={styles.basket_icon}>
                 <RiShoppingBasketFill />
                 <span>0</span>
               </div>
             </div>
-            <div className={styles.user}>
+            <div className={styles.user} onClick={() => setIsActiveAuth(true)}>
               <RiUserFill />
             </div>
           </nav>
+          {/* Карзина */}
+          <Modal isActive={isActive} setIsActive={setIsActive} />
+          {/* /Карзина */}
+          {/* Атвторизация */}
+          <ModalAuth isActive={isActiveAuth} setIsActive={setIsActiveAuth} />
+          {/* /Атвторизация */}
           <nav className={styles.down}>
             <ul>
               <li>
