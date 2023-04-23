@@ -5,6 +5,7 @@ import { Slider } from '../components/Slider/Slider';
 import { Cards } from '../components/Cards/Cards';
 import { Combo } from '../components/Combo/Combo';
 import { Category } from '../components/Category/Сategory';
+import { About } from '../components/About/About';
 
 export const Main: FC = (): JSX.Element => {
   return (
@@ -14,6 +15,7 @@ export const Main: FC = (): JSX.Element => {
         <Cards />
         <Combo />
         <Category />
+        <About />
       </div>
     </Layout>
   );

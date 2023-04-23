@@ -13,9 +13,7 @@ export const Category: FC = (): JSX.Element => {
         <img src="./illrollcategory.svg" alt="role" height={64} width={64} />
       </div>
       <Nav />
-
       <Items />
-
       <Pagination />
     </div>
   );

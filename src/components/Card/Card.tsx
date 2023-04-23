@@ -1,9 +1,10 @@
+import { FC } from 'react';
 import { Button } from '../UI/Button/Button';
 import { Text } from '../UI/Text/Text';
 import styles from './Card.module.scss';
 import { MdCircle } from 'react-icons/md';
 
-export const Card = () => {
+export const Card: FC = (): JSX.Element => {
   return (
     <div className={styles.card}>
       <div className={styles.img}>

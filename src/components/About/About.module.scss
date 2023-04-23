@@ -1,0 +1,44 @@
+.about {
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+
+  &_text {
+    h2 {
+      font-size: 48px;
+      color: #1b1b1b;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    p {
+      font-size: 20px;
+      font-weight: 300;
+    }
+
+    .title {
+      display: flex;
+      gap: 20px;
+    }
+  }
+
+  &_img {
+    margin-left: 150px;
+    position: relative;
+
+    .img1 {
+      position: relative;
+      z-index: 2;
+      width: 514px;
+      height: 640px;
+    }
+
+    .img2 {
+      position: absolute;
+      left: 90%;
+      top: 15%;
+      width: 336px;
+      height: 419px;
+    }
+  }
+}
