@@ -1,0 +1,27 @@
+.nav {
+  height: 70px;
+  border-bottom: 1px solid #e2e1e1;
+  display: flex;
+  align-items: center;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #1b1b1b;
+
+    .icon {
+      color: #c95c3f;
+      font-size: 30px;
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:hover {
+      .icon {
+        transform: translateX(-5px);
+      }
+    }
+  }
+}

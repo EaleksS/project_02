@@ -1,6 +1,6 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper.min.css';
+// import 'swiper/swiper.min.css';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -16,19 +16,22 @@ import { Card } from '../Card/Card';
 SwiperCore.use([Navigation]);
 
 interface Props {
-  type?: 'banner' | 'cards' | 'combo';
+  type?: 'banner' | 'cards' | 'combo' | 'info-product';
 }
 
 export const Slider: FC<Props> = ({ type = 'banner' }): JSX.Element => {
   const [swiper, setSwiper] = useState<SwiperCore>();
-
   const [swiperCards, setSwiperCards] = useState<SwiperCore>();
+  const [swiperProduct, setSwiperProduct] = useState<SwiperCore>();
 
   const [prevActive, setPrevActive] = useState(true);
   const [nextActive, setNextActive] = useState(false);
 
   const [prevActiveCards, setPrevActiveCards] = useState(true);
   const [nextActiveCards, setNextActiveCards] = useState(false);
+
+  const [prevActiveProduct, setPrevActiveProduct] = useState(true);
+  const [nextActiveProduct, setNextActiveProduct] = useState(false);
 
   const isActice = () => {
     setPrevActive(1 === Number(swiper?.activeIndex + 1));
@@ -45,7 +48,54 @@ export const Slider: FC<Props> = ({ type = 'banner' }): JSX.Element => {
     );
   };
 
+  const isActiceProduct = () => {
+    setPrevActiveProduct(1 === Number(swiperProduct?.activeIndex + 1));
+    setNextActiveProduct(
+      Number(swiperProduct?.slides?.length) ===
+        Number(swiperProduct?.activeIndex + 1)
+    );
+  };
+
   switch (type) {
+    case 'info-product':
+      return (
+        <div className="slider_container">
+          <Swiper
+            onSwiper={(s) => setSwiperProduct(s)}
+            style={{ height: '100%' }}
+            onSlideChange={() => isActiceProduct()}
+          >
+            {[0, 1, 2, 3, 4].map((e) => {
+              return (
+                <SwiperSlide key={e}>
+                  <img src="./sushi/1.png" alt="foot" className="foot-img" />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+          <div
+            className="prev"
+            onClick={() => swiperProduct.slidePrev()}
+            style={{ transform: 'scale(.8)' }}
+          >
+            <HiArrowLongLeft
+              style={prevActiveProduct ? { color: '#E2E1E1' } : {}}
+              className="arrow_prev"
+            />
+          </div>
+          <div
+            className="next"
+            onClick={() => swiperProduct.slideNext()}
+            style={{ transform: 'scale(.8)' }}
+          >
+            <HiArrowLongRight
+              style={nextActiveProduct ? { color: '#E2E1E1' } : {}}
+              className="arrow_next"
+            />
+          </div>
+        </div>
+      );
+
     case 'cards':
       return (
         <div className="slider_container">

@@ -1,0 +1,126 @@
+.container {
+  margin-top: 53px;
+  display: grid;
+  grid-template-columns: 50% 1fr;
+  gap: 80px;
+
+  .slider {
+    border: 1px solid #e2e1e1;
+  }
+
+  .info {
+    h1 {
+      font-size: 40px;
+      font-weight: 600;
+      transform: translateY(-15px);
+    }
+
+    .infoProduct {
+      margin-top: 23px;
+
+      .table {
+        border: 1px solid #e2e1e1;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        align-items: center;
+        justify-content: center;
+        height: 70px;
+        margin-top: 10px;
+
+        div {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 50px;
+          border-right: 1px solid #e2e1e1;
+        }
+
+        div:nth-child(4) {
+          border: 0;
+        }
+      }
+    }
+
+    .delivery {
+      margin-top: 23px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+
+      .icon {
+        font-size: 35px;
+        color: #e07153;
+      }
+
+      h3 {
+        font-size: 16px;
+      }
+
+      a {
+        font-size: 16px;
+        color: #c95c3f;
+        font-weight: 500;
+      }
+    }
+
+    .compound {
+      margin-top: 23px;
+    }
+
+    .order {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      .price {
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        font-size: 34px;
+        font-weight: 600;
+        transform: translateY(10px);
+
+        span {
+          position: absolute;
+          top: -10px;
+          color: #b7b7b7;
+          left: 0;
+          font-size: 16px;
+          font-weight: normal;
+          text-decoration: line-through;
+        }
+      }
+
+      .count {
+        user-select: none;
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: 30px 1fr 30px;
+        border: 1px solid #e2e1e1;
+        padding: 0 10px;
+        width: 120px;
+        height: 52px;
+        align-items: center;
+        border-radius: 8px;
+
+        .icon {
+          font-size: 30px;
+          color: #e07153;
+          cursor: pointer;
+        }
+
+        span {
+          font-size: 26px;
+          display: flex;
+          justify-content: center;
+        }
+      }
+
+      .btn {
+        height: 52px;
+        width: 250px;
+      }
+    }
+  }
+}

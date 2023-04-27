@@ -5,15 +5,18 @@ import { RiShoppingBasketFill, RiUserFill } from 'react-icons/ri';
 import { Text } from '../UI/Text/Text';
 import { Modal } from '../UI/Modal/Modal';
 import { ModalAuth } from '../UI/ModalAuth/ModalAuth';
+import { useNavigate } from 'react-router-dom';
 
 export const Header: FC = (): JSX.Element => {
   const [isActive, setIsActive] = useState(false);
   const [isActiveAuth, setIsActiveAuth] = useState(false);
 
+  const navigate = useNavigate();
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <div className={styles.logo}>
+        <div className={styles.logo} onClick={() => navigate('/')}>
           <img src="./logo.svg" alt="logo" />
         </div>
         <div style={{ width: '100%' }}>

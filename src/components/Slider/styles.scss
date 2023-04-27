@@ -30,6 +30,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .swiper-slide img {
@@ -86,6 +88,8 @@ body {
   position: relative;
   user-select: none;
   margin-top: 48px;
+
+
 }
 
 .mySwiper {
