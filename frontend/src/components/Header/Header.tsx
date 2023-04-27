@@ -6,10 +6,13 @@ import { Text } from '../UI/Text/Text';
 import { Modal } from '../UI/Modal/Modal';
 import { ModalAuth } from '../UI/ModalAuth/ModalAuth';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../store/auth.store';
 
 export const Header: FC = (): JSX.Element => {
   const [isActive, setIsActive] = useState(false);
   const [isActiveAuth, setIsActiveAuth] = useState(false);
+
+  const { user, getLogout } = useAuth();
 
   const navigate = useNavigate();
 
@@ -58,9 +61,16 @@ export const Header: FC = (): JSX.Element => {
                 <span>0</span>
               </div>
             </div>
-            <div className={styles.user} onClick={() => setIsActiveAuth(true)}>
-              <RiUserFill />
-            </div>
+            {user ? (
+              <div onClick={() => getLogout()}>выйти</div>
+            ) : (
+              <div
+                className={styles.user}
+                onClick={() => setIsActiveAuth(true)}
+              >
+                <RiUserFill />
+              </div>
+            )}
           </nav>
           {/* Карзина */}
           <Modal isActive={isActive} setIsActive={setIsActive} />

@@ -13,6 +13,12 @@ export class UserModel extends TimeStamps {
   @prop({ default: false })
   isAdmin: boolean
 
-  @prop({default: []})
+  @prop({ default: [] })
   favorite?: []
+
+  @prop({ default: [] })
+  basket?: []
+
+  @prop({ default: [] })
+  order?: []
 }

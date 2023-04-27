@@ -3,6 +3,7 @@ import styles from './ModalAuth.module.scss';
 import { Button } from '../Button/Button';
 import { Text } from '../Text/Text';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useAuth } from '../../../store/auth.store';
 
 interface Props {
   isActive: boolean;
@@ -26,6 +27,8 @@ export const ModalAuth: FC<Props> = ({
 }): JSX.Element => {
   const [selectAuth, setSelectAuth] = useState<'login' | 'register'>('login');
 
+  const { getLogin, getRegister } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -41,13 +44,19 @@ export const ModalAuth: FC<Props> = ({
     formState: { errors: errorsRegister },
   } = useForm<IFormInputRegister>();
 
+  // Login
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
+    getLogin(data.email, data.password);
     reset();
+
+    setTimeout(() => {
+      setIsActive && setIsActive(false);
+    }, 1000);
   };
 
+  // Register
   const onSubmitRegister: SubmitHandler<IFormInputRegister> = (data) => {
-    console.log(data);
+    getRegister(data.email, data.password);
     resetRegister();
   };
 
