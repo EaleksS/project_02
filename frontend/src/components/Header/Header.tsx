@@ -20,7 +20,7 @@ export const Header: FC = (): JSX.Element => {
     <header className={styles.header}>
       <div className={styles.container}>
         <div className={styles.logo} onClick={() => navigate('/')}>
-          <img src="./logo.svg" alt="logo" />
+          <img src="/logo.svg" alt="logo" />
         </div>
         <div style={{ width: '100%' }}>
           <nav className={styles.top}>
@@ -81,34 +81,34 @@ export const Header: FC = (): JSX.Element => {
           <nav className={styles.down}>
             <ul>
               <li>
-                <img src="./1.svg" alt="logo foot" />
+                <img src="/1.svg" alt="logo foot" />
               </li>
               <li>
-                <img src="./2.svg" alt="logo foot" />
+                <img src="/2.svg" alt="logo foot" />
               </li>
               <li>
-                <img src="./3.svg" alt="logo foot" />
+                <img src="/3.svg" alt="logo foot" />
               </li>
               <li>
-                <img src="./4.svg" alt="logo foot" />
+                <img src="/4.svg" alt="logo foot" />
               </li>
               <li>
-                <img src="./5.svg" alt="logo foot" />
+                <img src="/5.svg" alt="logo foot" />
               </li>
               <li>
-                <img src="./6.svg" alt="logo foot" />
+                <img src="/6.svg" alt="logo foot" />
               </li>
               <li>
-                <img src="./7.svg" alt="logo foot" />
+                <img src="/7.svg" alt="logo foot" />
               </li>
               <li>
-                <img src="./8.svg" alt="logo foot" />
+                <img src="/8.svg" alt="logo foot" />
               </li>
               <li>
-                <img src="./9.svg" alt="logo foot" />
+                <img src="/9.svg" alt="logo foot" />
               </li>
               <li>
-                <img src="./10.svg" alt="logo foot" />
+                <img src="/10.svg" alt="logo foot" />
               </li>
             </ul>
           </nav>

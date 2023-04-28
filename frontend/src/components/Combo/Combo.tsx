@@ -8,7 +8,7 @@ export const Combo: FC = (): JSX.Element => {
     <div className={styles.combo}>
       <div className={styles.nav}>
         <Text type="h2">Комбо меню</Text>
-        <img src="./iilroll2.svg" alt="role" height={64} width={64} />
+        <img src="/iilroll2.svg" alt="role" height={64} width={64} />
       </div>
 
       <Slider type="combo" />

@@ -34,7 +34,7 @@ export const Modal: FC<Props> = ({
       }}
     >
       <div className={styles.content}>
-        <img src="./ic2.svg" alt="logo" />
+        <img src="/ic2.svg" alt="logo" />
         <Text type="h2">Ваша корзина пуста</Text>
       </div>
       <div className={styles.buy}>

@@ -7,7 +7,7 @@ export const Footer: FC = (): JSX.Element => {
     <header className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <img src="./logo-footer.svg" alt="logo" />
+          <img src="/logo-footer.svg" alt="logo" />
         </div>
         <div className={styles.nav}>
           <ul>
@@ -17,15 +17,15 @@ export const Footer: FC = (): JSX.Element => {
           </ul>
           <div className={styles.social}>
             <img
-              src="./remix-icons/fill/logos/facebook-box-fill.svg"
+              src="/remix-icons/fill/logos/facebook-box-fill.svg"
               alt="facebook"
             />
             <img
-              src="./remix-icons/fill/logos/instagram-fill.svg"
+              src="/remix-icons/fill/logos/instagram-fill.svg"
               alt="instagram"
             />
             <img
-              src="./remix-icons/fill/logos/vk-social-logotype.svg"
+              src="/remix-icons/fill/logos/vk-social-logotype.svg"
               alt="vk"
             />
           </div>

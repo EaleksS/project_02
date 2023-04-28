@@ -9,9 +9,10 @@ import './styles.scss';
 
 // import required modules
 import SwiperCore, { Navigation, Pagination } from 'swiper/core';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { HiArrowLongLeft, HiArrowLongRight } from 'react-icons/hi2';
 import { Card } from '../Card/Card';
+import { useProduct } from '../../store/products.store';
 
 SwiperCore.use([Navigation]);
 
@@ -56,6 +57,15 @@ export const Slider: FC<Props> = ({ type = 'banner' }): JSX.Element => {
     );
   };
 
+  const { getProducts, products } = useProduct();
+
+  let changeComp = 0;
+
+  useEffect(() => {
+    if (changeComp === 0) getProducts();
+    changeComp++;
+  }, []);
+
   switch (type) {
     case 'info-product':
       return (
@@ -68,7 +78,7 @@ export const Slider: FC<Props> = ({ type = 'banner' }): JSX.Element => {
             {[0, 1, 2, 3, 4].map((e) => {
               return (
                 <SwiperSlide key={e}>
-                  <img src="./sushi/1.png" alt="foot" className="foot-img" />
+                  <img src="/sushi/1.png" alt="foot" className="foot-img" />
                 </SwiperSlide>
               );
             })}
@@ -107,13 +117,14 @@ export const Slider: FC<Props> = ({ type = 'banner' }): JSX.Element => {
             onSlideChange={() => isActiceCards()}
             style={{ padding: '10px' }}
           >
-            {[0, 1, 2, 3, 4].map((e) => {
-              return (
-                <SwiperSlide key={e}>
-                  <Card />
-                </SwiperSlide>
-              );
-            })}
+            {products &&
+              products.map((product) => {
+                return (
+                  <SwiperSlide key={product._id}>
+                    <Card {...product} />
+                  </SwiperSlide>
+                );
+              })}
           </Swiper>
           {!prevActiveCards && (
             <div className="prev" onClick={() => swiperCards.slidePrev()}>

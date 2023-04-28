@@ -20,7 +20,7 @@ export const Button: FC<Props> = ({
     case 'active':
       return (
         <button className={`${className} ${styles.btn} ${styles.active}`}>
-          <img src="./path222.png" alt="path222" className={styles.img} />
+          <img src="/path222.png" alt="path222" className={styles.img} />
           <span>{children}</span>
         </button>
       );

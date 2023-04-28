@@ -12,11 +12,11 @@ export const Feedback: FC = (): JSX.Element => {
         <Text>Оставьте отзыв. Помогите нам стать лучше.</Text>
       </div>
       <div className={styles.icon}>
-        <img src="./illroll5feedback.svg" alt="feedback" />
+        <img src="/illroll5feedback.svg" alt="feedback" />
       </div>
       <div className={styles.btn}>
         <span>Оставить отзыв</span>
-        <img src="./path222.png" alt="path" />
+        <img src="/path222.png" alt="path" />
       </div>
     </div>
   );

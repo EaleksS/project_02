@@ -32,7 +32,7 @@ export const Comments: FC = (): JSX.Element => {
             <div className={styles.photo}>
               {e % 2 === 0 && (
                 <img
-                  src="./imgcomment.png"
+                  src="/imgcomment.png"
                   alt="img"
                   width={164}
                   height={124}
