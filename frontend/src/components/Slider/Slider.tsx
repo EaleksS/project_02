@@ -1,26 +1,29 @@
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 // import 'swiper/swiper.min.css';
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
+import "swiper/css";
+import "swiper/css/navigation";
 
-import './styles.scss';
+import "./styles.scss";
 
 // import required modules
-import SwiperCore, { Navigation, Pagination } from 'swiper/core';
-import { FC, useEffect, useState } from 'react';
-import { HiArrowLongLeft, HiArrowLongRight } from 'react-icons/hi2';
-import { Card } from '../Card/Card';
-import { useProduct } from '../../store/products.store';
+import SwiperCore, {
+  Navigation,
+  Pagination,
+} from "../../../node_modules/swiper";
+import { FC, useEffect, useState } from "react";
+import { HiArrowLongLeft, HiArrowLongRight } from "react-icons/hi2";
+import { Card } from "../Card/Card";
+import { useProduct } from "../../store/products.store";
 
 SwiperCore.use([Navigation]);
 
 interface Props {
-  type?: 'banner' | 'cards' | 'combo' | 'info-product';
+  type?: "banner" | "cards" | "combo" | "info-product";
 }
 
-export const Slider: FC<Props> = ({ type = 'banner' }): JSX.Element => {
+export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
   const [swiper, setSwiper] = useState<SwiperCore>();
   const [swiperCards, setSwiperCards] = useState<SwiperCore>();
   const [swiperProduct, setSwiperProduct] = useState<SwiperCore>();
@@ -35,25 +38,30 @@ export const Slider: FC<Props> = ({ type = 'banner' }): JSX.Element => {
   const [nextActiveProduct, setNextActiveProduct] = useState(false);
 
   const isActice = () => {
-    setPrevActive(1 === Number(swiper?.activeIndex + 1));
+    setPrevActive(1 === Number(swiper && swiper?.activeIndex + 1));
     setNextActive(
-      Number(swiper?.slides?.length) === Number(swiper?.activeIndex + 1)
+      Number(swiper?.slides?.length) ===
+        Number(swiper && swiper?.activeIndex + 1)
     );
   };
 
   const isActiceCards = () => {
-    setPrevActiveCards(1 === Number(swiperCards?.activeIndex + 1));
+    setPrevActiveCards(
+      1 === Number(swiperCards && swiperCards?.activeIndex + 1)
+    );
     setNextActiveCards(
       Number(swiperCards?.slides?.length) ===
-        Number(swiperCards?.activeIndex + 3)
+        Number(swiperCards && swiperCards?.activeIndex + 3)
     );
   };
 
   const isActiceProduct = () => {
-    setPrevActiveProduct(1 === Number(swiperProduct?.activeIndex + 1));
+    setPrevActiveProduct(
+      1 === Number(swiperProduct && swiperProduct?.activeIndex + 1)
+    );
     setNextActiveProduct(
       Number(swiperProduct?.slides?.length) ===
-        Number(swiperProduct?.activeIndex + 1)
+        Number(swiperProduct && swiperProduct?.activeIndex + 1)
     );
   };
 
@@ -63,16 +71,16 @@ export const Slider: FC<Props> = ({ type = 'banner' }): JSX.Element => {
 
   useEffect(() => {
     if (changeComp === 0) getProducts();
-    changeComp++;
-  }, []);
+     changeComp++;
+  });
 
   switch (type) {
-    case 'info-product':
+    case "info-product":
       return (
         <div className="slider_container">
           <Swiper
             onSwiper={(s) => setSwiperProduct(s)}
-            style={{ height: '100%' }}
+            style={{ height: "100%" }}
             onSlideChange={() => isActiceProduct()}
           >
             {[0].map((e) => {
@@ -89,28 +97,28 @@ export const Slider: FC<Props> = ({ type = 'banner' }): JSX.Element => {
           </Swiper>
           <div
             className="prev"
-            onClick={() => swiperProduct.slidePrev()}
-            style={{ transform: 'scale(.8)' }}
+            onClick={() => swiperProduct && swiperProduct.slidePrev()}
+            style={{ transform: "scale(.8)" }}
           >
             <HiArrowLongLeft
-              style={prevActiveProduct ? { color: '#E2E1E1' } : {}}
+              style={prevActiveProduct ? { color: "#E2E1E1" } : {}}
               className="arrow_prev"
             />
           </div>
           <div
             className="next"
-            onClick={() => swiperProduct.slideNext()}
-            style={{ transform: 'scale(.8)' }}
+            onClick={() => swiperProduct && swiperProduct.slideNext()}
+            style={{ transform: "scale(.8)" }}
           >
             <HiArrowLongRight
-              style={nextActiveProduct ? { color: '#E2E1E1' } : {}}
+              style={nextActiveProduct ? { color: "#E2E1E1" } : {}}
               className="arrow_next"
             />
           </div>
         </div>
       );
 
-    case 'cards':
+    case "cards":
       return (
         <div className="slider_container">
           <Swiper
@@ -119,7 +127,7 @@ export const Slider: FC<Props> = ({ type = 'banner' }): JSX.Element => {
             spaceBetween={30}
             modules={[Pagination]}
             onSlideChange={() => isActiceCards()}
-            style={{ padding: '10px' }}
+            style={{ padding: "10px" }}
           >
             {products &&
               products.map((product) => {
@@ -131,19 +139,25 @@ export const Slider: FC<Props> = ({ type = 'banner' }): JSX.Element => {
               })}
           </Swiper>
           {!prevActiveCards && (
-            <div className="prev" onClick={() => swiperCards.slidePrev()}>
+            <div
+              className="prev"
+              onClick={() => swiperCards && swiperCards.slidePrev()}
+            >
               <HiArrowLongLeft className="arrow_prev" />
             </div>
           )}
           {!nextActiveCards && (
-            <div className="next" onClick={() => swiperCards.slideNext()}>
+            <div
+              className="next"
+              onClick={() => swiperCards && swiperCards.slideNext()}
+            >
               <HiArrowLongRight className="arrow_next" />
             </div>
           )}
         </div>
       );
 
-    case 'combo':
+    case "combo":
       return (
         <div className="slider_container">
           <Swiper
@@ -152,7 +166,7 @@ export const Slider: FC<Props> = ({ type = 'banner' }): JSX.Element => {
             spaceBetween={30}
             modules={[Pagination]}
             onSlideChange={() => isActiceCards()}
-            style={{ padding: '10px' }}
+            style={{ padding: "10px" }}
           >
             {products &&
               products.map((e) => {
@@ -164,12 +178,18 @@ export const Slider: FC<Props> = ({ type = 'banner' }): JSX.Element => {
               })}
           </Swiper>
           {!prevActiveCards && (
-            <div className="prev" onClick={() => swiperCards.slidePrev()}>
+            <div
+              className="prev"
+              onClick={() => swiperCards && swiperCards.slidePrev()}
+            >
               <HiArrowLongLeft className="arrow_prev" />
             </div>
           )}
           {!nextActiveCards && (
-            <div className="next" onClick={() => swiperCards.slideNext()}>
+            <div
+              className="next"
+              onClick={() => swiperCards && swiperCards.slideNext()}
+            >
               <HiArrowLongRight className="arrow_next" />
             </div>
           )}
@@ -194,15 +214,15 @@ export const Slider: FC<Props> = ({ type = 'banner' }): JSX.Element => {
               <img src="./banner.png" alt="banner" />
             </SwiperSlide>
           </Swiper>
-          <div className="prev" onClick={() => swiper.slidePrev()}>
+          <div className="prev" onClick={() => swiper && swiper.slidePrev()}>
             <HiArrowLongLeft
-              style={prevActive ? { color: '#E2E1E1' } : {}}
+              style={prevActive ? { color: "#E2E1E1" } : {}}
               className="arrow_prev"
             />
           </div>
-          <div className="next" onClick={() => swiper.slideNext()}>
+          <div className="next" onClick={() => swiper && swiper.slideNext()}>
             <HiArrowLongRight
-              style={nextActive ? { color: '#E2E1E1' } : {}}
+              style={nextActive ? { color: "#E2E1E1" } : {}}
               className="arrow_next"
             />
           </div>

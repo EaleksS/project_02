@@ -10,7 +10,9 @@ function App() {
 
   useEffect(() => {
     getRefresh();
-  }, []);
+  }, [getRefresh]);
+
+
 
   return (
     <Routes>
