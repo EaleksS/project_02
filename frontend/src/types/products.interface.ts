@@ -2,12 +2,14 @@ export interface ICreateComment {
   name: string;
   comment: string;
   img: string;
+  rating: number
 }
 
 export interface IComment {
   name: string;
   comment: string;
   img: string;
+  rating: number
   createdAt: string;
   _id: string;
 }

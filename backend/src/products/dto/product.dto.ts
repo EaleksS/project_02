@@ -1,4 +1,4 @@
-import { IsNumber, IsString, IsObject, IsArray } from 'class-validator'
+import { IsNumber, IsString, IsObject, IsArray, IsBase64 } from 'class-validator'
 import { InfoDto } from './info.dto'
 import { CommentDto } from './comment.dto'
 

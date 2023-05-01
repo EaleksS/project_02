@@ -1,4 +1,4 @@
-import { IsString } from 'class-validator'
+import { IsNumber, IsString } from 'class-validator'
 
 export class CommentDto {
   @IsString()
@@ -9,4 +9,7 @@ export class CommentDto {
 
   @IsString()
   img: string
+
+  @IsNumber()
+  rating: number
 }

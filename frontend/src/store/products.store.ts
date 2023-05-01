@@ -1,11 +1,11 @@
 import { create } from 'zustand';
-import { IUser } from '../types/auth.interface';
-import { toast } from 'react-toastify';
 import { persist } from 'zustand/middleware';
 import { IProduct } from '../types/products.interface';
 import { Products } from '../services/products.service';
 
 type useProduct = {
+  isError: boolean;
+  setIsError: (bool: boolean) => void;
   products: null | IProduct[];
   getProducts: () => void;
   productById: null | IProduct;
@@ -14,7 +14,11 @@ type useProduct = {
 
 export const useProduct = create(
   persist<useProduct>(
-    (set, get) => ({
+    (set) => ({
+      isError: false,
+      setIsError: (bool) => {
+        set({ isError: bool });
+      },
       products: null,
       getProducts: () => {
         Products.getProducts()
@@ -25,7 +29,7 @@ export const useProduct = create(
       getProductById: (id) => {
         Products.getProductById(id)
           .then((res) => set({ productById: res.data }))
-          .catch((err) => console.log(err));
+          .catch(() => set({ isError: true }));
       },
     }),
     { name: 'products' }

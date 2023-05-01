@@ -4,12 +4,20 @@ import { Text } from '../UI/Text/Text';
 import styles from './Card.module.scss';
 import { MdCircle } from 'react-icons/md';
 import { IProduct } from '../../types/products.interface';
+import { useNavigate } from 'react-router-dom';
 
 export const Card: FC<IProduct> = (props): JSX.Element => {
-  let newPrice = `${(props.price * (100 - props.discount)) / 100} ₽`;
+  let newPrice = `${Math.round(
+    (props.price * (100 - props.discount)) / 100
+  )} ₽`;
+
+  const navigate = useNavigate();
 
   return (
-    <div className={styles.card}>
+    <div
+      className={styles.card}
+      onClick={() => navigate(`/products/${props._id}`)}
+    >
       <div className={styles.img}>
         <img src={props.imageUrl} alt="img" />
       </div>

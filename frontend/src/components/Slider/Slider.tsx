@@ -57,7 +57,7 @@ export const Slider: FC<Props> = ({ type = 'banner' }): JSX.Element => {
     );
   };
 
-  const { getProducts, products } = useProduct();
+  const { getProducts, products, productById } = useProduct();
 
   let changeComp = 0;
 
@@ -75,10 +75,14 @@ export const Slider: FC<Props> = ({ type = 'banner' }): JSX.Element => {
             style={{ height: '100%' }}
             onSlideChange={() => isActiceProduct()}
           >
-            {[0, 1, 2, 3, 4].map((e) => {
+            {[0].map((e) => {
               return (
                 <SwiperSlide key={e}>
-                  <img src="/sushi/1.png" alt="foot" className="foot-img" />
+                  <img
+                    src={productById?.imageUrl}
+                    alt="foot"
+                    className="foot-img"
+                  />
                 </SwiperSlide>
               );
             })}
@@ -150,13 +154,14 @@ export const Slider: FC<Props> = ({ type = 'banner' }): JSX.Element => {
             onSlideChange={() => isActiceCards()}
             style={{ padding: '10px' }}
           >
-            {[0, 1, 2, 3, 4].map((e) => {
-              return (
-                <SwiperSlide key={e}>
-                  <Card />
-                </SwiperSlide>
-              );
-            })}
+            {products &&
+              products.map((e) => {
+                return (
+                  <SwiperSlide key={e._id}>
+                    <Card {...e} />
+                  </SwiperSlide>
+                );
+              })}
           </Swiper>
           {!prevActiveCards && (
             <div className="prev" onClick={() => swiperCards.slidePrev()}>

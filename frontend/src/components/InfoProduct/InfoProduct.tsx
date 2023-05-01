@@ -6,9 +6,11 @@ import { Link } from 'react-router-dom';
 import { Button } from '../UI/Button/Button';
 import { HiMinusSm, HiPlus } from 'react-icons/hi';
 import { Slider } from '../Slider/Slider';
+import { useProduct } from '../../store/products.store';
 
 export const InfoProduct: FC = (): JSX.Element => {
   const [count, setCount] = useState<number>(1);
+  const { productById } = useProduct();
 
   const handleAddition = () => {
     setCount((prev) => {
@@ -23,36 +25,43 @@ export const InfoProduct: FC = (): JSX.Element => {
     });
   };
 
+  let newPrice =
+    productById &&
+    `${
+      Math.round((productById?.price * (100 - productById?.discount)) / 100) *
+      count
+    } ₽`;
+
   return (
     <div className={styles.container}>
       <div className={styles.slider}>
         <Slider type="info-product" />
       </div>
       <div className={styles.info}>
-        <Text type="h1">Ролл "Филадельфия"</Text>
+        <Text type="h1">{productById?.name}</Text>
         <div className={styles.infoProduct}>
           <Text type="h3">
-            <b>Вес:</b> 200 грамм
+            <b>Вес:</b> {productById?.info?.weight} грамм
           </Text>
           <div className={styles.table}>
             <div>
               Белки <br />
-              <b>7,5 г</b>
+              <b>{productById?.info?.proteins} г</b>
             </div>
             <div>
               Углеводы
               <br />
-              <b>16,6 г</b>
+              <b>{productById?.info?.carbohydrates} г</b>
             </div>
             <div>
               Жиры
               <br />
-              <b>3,8 г</b>
+              <b>{productById?.info?.fats} г</b>
             </div>
             <div>
               Калорийность
               <br />
-              <b>213 Ккал</b>
+              <b>{productById?.info?.calories} Ккал</b>
             </div>
           </div>
         </div>
@@ -67,11 +76,11 @@ export const InfoProduct: FC = (): JSX.Element => {
           <Text type="h3">
             <b>Состав:</b>
           </Text>
-          <Text>Лосось, сыр "Филадельфия", огурец, авокадо</Text>
+          <Text>{productById?.description}</Text>
         </div>
         <div className={styles.order}>
           <div className={styles.price}>
-            {219 * count} ₽ <span>269 ₽</span>
+            {newPrice} <span>{productById?.price} ₽</span>
           </div>
           <div className={styles.count}>
             <HiMinusSm className={styles.icon} onClick={handleSubtraction} />

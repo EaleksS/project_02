@@ -15,7 +15,7 @@ export class ProductModel extends TimeStamps {
   @prop()
   description: string
 
-  @prop({ default: false })
+  @prop()
   imageUrl: string
 
   @prop({ default: [] })
