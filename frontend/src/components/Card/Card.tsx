@@ -19,7 +19,7 @@ export const Card: FC<IProduct> = (props): JSX.Element => {
       onClick={() => navigate(`/products/${props._id}`)}
     >
       <div className={styles.img}>
-        <img src={props.imageUrl} alt="img" />
+        <img src={props.imageUrl} alt="img" width={'100%'} />
       </div>
       <div className={styles.content}>
         <div className={styles.info}>
