@@ -81,8 +81,8 @@ export class UserService {
 
     const isSameProduct = basket.filter((product) => product._id === dto._id)
 
-    if (isSameProduct.length === 1)
-      throw new NotFoundException('Такая уже есть в корзине')
+    if (isSameProduct.length >= 1) throw new NotFoundException('Такая уже есть в корзине')
+
     ;(await user).basket.push(dto)
 
     return (await user).save()

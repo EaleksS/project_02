@@ -1,28 +1,40 @@
-import { FC, useState } from 'react';
-import styles from './Header.module.scss';
-import { FaPhoneAlt } from 'react-icons/fa';
-import { RiShoppingBasketFill, RiUserFill } from 'react-icons/ri';
-import { Text } from '../UI/Text/Text';
-import { Modal } from '../UI/Modal/Modal';
-import { ModalAuth } from '../UI/ModalAuth/ModalAuth';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../store/auth.store';
+import { FC, useState } from "react";
+import styles from "./Header.module.scss";
+import { FaPhoneAlt } from "react-icons/fa";
+import { RiShoppingBasketFill, RiUserFill } from "react-icons/ri";
+import { Text } from "../UI/Text/Text";
+import { Modal } from "../UI/Modal/Modal";
+import { ModalAuth } from "../UI/ModalAuth/ModalAuth";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../store/auth.store";
+import { useUser } from "../../store/user.store";
+import { useBasket } from "../../store/basket.store";
 
 export const Header: FC = (): JSX.Element => {
-  const [isActive, setIsActive] = useState(false);
   const [isActiveAuth, setIsActiveAuth] = useState(false);
 
   const { user, getLogout } = useAuth();
+  const { isActive, setIsActive } = useBasket();
 
   const navigate = useNavigate();
+
+  const { profile } = useUser();
+
+  let price: number = 0;
+
+  profile?.basket.forEach((e) => {
+    price += Math.round(
+      (e.price * (e?.quantity ? e?.quantity : 1) * (100 - e.discount)) / 100
+    );
+  });
 
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <div className={styles.logo} onClick={() => navigate('/')}>
+        <div className={styles.logo} onClick={() => navigate("/")}>
           <img src="/logo.svg" alt="logo" />
         </div>
-        <div style={{ width: '100%' }}>
+        <div style={{ width: "100%" }}>
           <nav className={styles.top}>
             <ul className={styles.list}>
               <li>
@@ -52,13 +64,13 @@ export const Header: FC = (): JSX.Element => {
               className={styles.basket}
               onClick={(e) => {
                 e.stopPropagation();
-                setIsActive((prev) => !prev);
+                setIsActive();
               }}
             >
-              <div className={styles.count}>0 ₽</div>
+              <div className={styles.count}>{price} ₽</div>
               <div className={styles.basket_icon}>
                 <RiShoppingBasketFill />
-                <span>0</span>
+                <span>{profile ? profile.basket.length : 0}</span>
               </div>
             </div>
             {user ? (
@@ -73,7 +85,7 @@ export const Header: FC = (): JSX.Element => {
             )}
           </nav>
           {/* Карзина */}
-          <Modal isActive={isActive} setIsActive={setIsActive} />
+          <Modal />
           {/* /Карзина */}
           {/* Атвторизация */}
           <ModalAuth isActive={isActiveAuth} setIsActive={setIsActiveAuth} />

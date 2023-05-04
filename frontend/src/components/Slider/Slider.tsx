@@ -70,9 +70,11 @@ export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
   let changeComp = 0;
 
   useEffect(() => {
-    if (changeComp === 0) getProducts();
-    changeComp++;
-  });
+    if (changeComp === 0) {
+      getProducts();
+      changeComp++;
+    }
+  }, []);
 
   switch (type) {
     case "info-product":

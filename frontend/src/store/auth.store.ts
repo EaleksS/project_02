@@ -1,7 +1,7 @@
-import { Auth } from '../services/auth.service';
-import { create } from 'zustand';
-import { IUser } from '../types/auth.interface';
-import { toast } from 'react-toastify';
+import { Auth } from "../services/auth.service";
+import { create } from "zustand";
+import { IUser } from "../types/auth.interface";
+import { toast } from "react-toastify";
 
 type useAuth = {
   user: null | IUser;
@@ -17,9 +17,9 @@ export const useAuth = create<useAuth>((set) => ({
     Auth.getLogin(email, password)
       .then((res) => {
         set({ user: res.data });
-        toast.success('Вы успешно вошли');
-        localStorage.setItem('accessToken', res.data.accessToken);
-        localStorage.setItem('refreshToken', res.data.refreshToken);
+        toast.success("Вы успешно вошли");
+        localStorage.setItem("accessToken", res.data.accessToken);
+        localStorage.setItem("refreshToken", res.data.refreshToken);
       })
       .catch((err) => {
         console.log(err);
@@ -28,22 +28,28 @@ export const useAuth = create<useAuth>((set) => ({
   },
   getRefresh: () => {
     Auth.getRefresh()
-      .then((res) => set({ user: res.data }))
+      .then((res) => {
+        set({ user: res.data });
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        localStorage.setItem("accessToken", res.data.accessToken);
+        localStorage.setItem("refreshToken", res.data.refreshToken);
+      })
       .catch(() => {
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
       });
   },
   getRegister: (email, password) => {
     Auth.getRegister(email, password)
-      .then(() => toast.success('вы успешно зарегистрировались'))
+      .then(() => toast.success("вы успешно зарегистрировались"))
       .catch((err) => {
         toast.error(err.response.data.message);
       });
   },
   getLogout: () => {
     set({ user: null });
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
   },
 }));

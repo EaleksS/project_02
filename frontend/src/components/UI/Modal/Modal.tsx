@@ -1,28 +1,34 @@
-import { Dispatch, FC, SetStateAction, useEffect } from 'react';
-import styles from './Modal.module.scss';
-import { Button } from '../Button/Button';
-import { Text } from '../Text/Text';
+import { Dispatch, FC, SetStateAction, useEffect } from "react";
+import styles from "./Modal.module.scss";
+import { Button } from "../Button/Button";
+import { Text } from "../Text/Text";
+import { useUser } from "../../../store/user.store";
+import { useBasket } from "../../../store/basket.store";
 
-interface Props {
-  isActive: boolean;
-  setIsActive?: Dispatch<SetStateAction<boolean>>;
-}
+export const Modal: FC = (): JSX.Element => {
+  const { isActive, setIsActive } = useBasket();
 
-export const Modal: FC<Props> = ({
-  isActive,
-  setIsActive,
-}): JSX.Element => {
   const handleClickRemove = () => {
     setIsActive && setIsActive(false);
   };
 
   useEffect(() => {
-    window.addEventListener('click', handleClickRemove);
+    window.addEventListener("click", handleClickRemove);
 
     return () => {
-      window.removeEventListener('click', handleClickRemove);
+      window.removeEventListener("click", handleClickRemove);
     };
   }, []);
+
+  const { profile } = useUser();
+
+  let price: number = 0;
+
+  profile?.basket.forEach((e) => {
+    price += Math.round(
+      (e.price * (e?.quantity ? e?.quantity : 1) * (100 - e.discount)) / 100
+    );
+  });
 
   return (
     <div
@@ -34,12 +40,18 @@ export const Modal: FC<Props> = ({
       }}
     >
       <div className={styles.content}>
-        <img src="/ic2.svg" alt="logo" />
-        <Text type="h2">Ваша корзина пуста</Text>
+        {profile?.basket.length ? (
+          1
+        ) : (
+          <>
+            <img src="/ic2.svg" alt="logo" />
+            <Text type="h2">Ваша корзина пуста</Text>
+          </>
+        )}
       </div>
       <div className={styles.buy}>
         <div className={styles.count}>
-          Сумма заказа: <b>0 ₽ </b>
+          Сумма заказа: <b>{price} ₽ </b>
         </div>
         <Button type="active" className={styles.btn}>
           В каталог

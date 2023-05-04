@@ -2,14 +2,14 @@ export interface ICreateComment {
   name: string;
   comment: string;
   img: string;
-  rating: number
+  rating: number;
 }
 
 export interface IComment {
   name: string;
   comment: string;
   img: string;
-  rating: number
+  rating: number;
   createdAt: string;
   _id: string;
 }
@@ -45,6 +45,7 @@ export interface IProduct {
     fats: string;
     calories: string;
   };
+  quantity?: number;
   createdAt: string;
   updatedAt: string;
   __v: number;

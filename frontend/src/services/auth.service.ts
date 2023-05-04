@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { BASE_URL } from '../http/index';
+import axios from "axios";
+import { BASE_URL } from "../http/index";
 
 export const Auth = {
   async getLogin(email: string, password: string | number) {
@@ -18,7 +18,7 @@ export const Auth = {
 
   async getRefresh() {
     return await axios.post(`${BASE_URL}/auth/login/access-token`, {
-      refreshToken: localStorage.getItem('refreshToken'),
+      refreshToken: localStorage.getItem("refreshToken"),
     });
   },
 };

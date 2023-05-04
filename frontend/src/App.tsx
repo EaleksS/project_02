@@ -4,13 +4,25 @@ import { Main } from "./pages/Main";
 import { Products } from "./pages/Products";
 import { useAuth } from "./store/auth.store";
 import { useEffect } from "react";
+import { useUser } from "./store/user.store";
 
 function App() {
   const { getRefresh } = useAuth();
+  const { getProfile } = useUser();
+  const { user } = useAuth();
+
+  let count = 0;
 
   useEffect(() => {
-    getRefresh();
-  }, [getRefresh]);
+    if (count === 0 && localStorage.getItem("refreshToken")) {
+      getRefresh();
+      count++;
+    }
+  }, []);
+
+  useEffect(() => {
+    user && getProfile();
+  }, [user]);
 
   return (
     <Routes>

@@ -1,16 +1,22 @@
-import { FC, useState } from 'react';
-import styles from './InfoProduct.module.scss';
-import { Text } from '../UI/Text/Text';
-import { MdOutlineDeliveryDining } from 'react-icons/md';
-import { Link } from 'react-router-dom';
-import { Button } from '../UI/Button/Button';
-import { HiMinusSm, HiPlus } from 'react-icons/hi';
-import { Slider } from '../Slider/Slider';
-import { useProduct } from '../../store/products.store';
+import { FC, useState } from "react";
+import styles from "./InfoProduct.module.scss";
+import { Text } from "../UI/Text/Text";
+import { MdOutlineDeliveryDining } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { Button } from "../UI/Button/Button";
+import { HiMinusSm, HiPlus } from "react-icons/hi";
+import { Slider } from "../Slider/Slider";
+import { useProduct } from "../../store/products.store";
+import { useBasket } from "../../store/basket.store";
+import { useUser } from "../../store/user.store";
+import { useAuth } from "../../store/auth.store";
 
 export const InfoProduct: FC = (): JSX.Element => {
   const [count, setCount] = useState<number>(1);
   const { productById } = useProduct();
+  const { getAddInBasket, getDeleteInBasket } = useBasket();
+  const { profile, addInBasket, deleteInBasket } = useUser();
+  const { user } = useAuth();
 
   const handleAddition = () => {
     setCount((prev) => {
@@ -31,6 +37,24 @@ export const InfoProduct: FC = (): JSX.Element => {
       Math.round((productById?.price * (100 - productById?.discount)) / 100) *
       count
     } ₽`;
+
+  const isSameProduct = profile?.basket.find((e) => e._id === productById?._id);
+
+  const handleBuy = () => {
+    if (!user) return;
+
+    if (profile && productById && !isSameProduct) {
+      addInBasket({ ...productById, quantity: count });
+      getAddInBasket(profile._id, { ...productById, quantity: count });
+      return;
+    }
+
+    if (profile && productById) {
+      deleteInBasket(productById);
+      getDeleteInBasket(profile?._id, productById?._id);
+      return;
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -82,14 +106,29 @@ export const InfoProduct: FC = (): JSX.Element => {
           <div className={styles.price}>
             {newPrice} <span>{productById?.price} ₽</span>
           </div>
+
           <div className={styles.count}>
-            <HiMinusSm className={styles.icon} onClick={handleSubtraction} />
-            <span>{count}</span>
-            <HiPlus className={styles.icon} onClick={handleAddition} />
+            <HiMinusSm
+              className={styles.icon}
+              onClick={!isSameProduct ? handleSubtraction : () => ""}
+              style={isSameProduct ? { opacity: ".1" } : {}}
+            />
+            <span>{!isSameProduct ? count : isSameProduct.quantity}</span>
+            <HiPlus
+              className={styles.icon}
+              onClick={!isSameProduct ? handleAddition : () => ""}
+              style={isSameProduct ? { opacity: ".1" } : {}}
+            />
           </div>
-          <Button type="active" className={styles.btn}>
-            Заказать
-          </Button>
+          <div onClick={() => handleBuy()}>
+            <Button type="active" className={styles.btn}>
+              {user
+                ? isSameProduct
+                  ? "Убрать из корзины"
+                  : "Добавить в корзину"
+                : "Войдите"}
+            </Button>
+          </div>
         </div>
       </div>
     </div>

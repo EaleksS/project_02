@@ -34,9 +34,10 @@ export class AuthService {
     if (!refreshToken) throw new UnauthorizedException('Please sign in!')
 
     const result = await this.jwtService.verifyAsync(refreshToken)
+
     if (!result) throw new UnauthorizedException('Invalid token or expired')
 
-    const user = await this.UserModel.findById(result.id)
+    const user = await this.UserModel.findById(result._id)
 
     const tokens = await this.issueTokenPair(String(user.id))
 
@@ -92,7 +93,6 @@ export class AuthService {
     const accessToken = await this.jwtService.signAsync(data, {
       expiresIn: '1h',
     })
-
     return { refreshToken, accessToken }
   }
 
