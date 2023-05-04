@@ -22,6 +22,9 @@ export class ProductModel extends TimeStamps {
   comments: CommentModel[]
 
   @prop()
+  type: string
+
+  @prop()
   info: {
     weight: string
     proteins: string

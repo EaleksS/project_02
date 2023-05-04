@@ -24,6 +24,9 @@ export class AddBasketDto {
   @IsArray()
   comments: CommentDto
 
+  @IsString()
+  type: string
+
   @IsObject()
   info: InfoDto
 

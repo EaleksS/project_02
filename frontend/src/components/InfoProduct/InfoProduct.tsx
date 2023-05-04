@@ -5,7 +5,6 @@ import { MdOutlineDeliveryDining } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Button } from "../UI/Button/Button";
 import { HiMinusSm, HiPlus } from "react-icons/hi";
-import { Slider } from "../Slider/Slider";
 import { useProduct } from "../../store/products.store";
 import { useBasket } from "../../store/basket.store";
 import { useUser } from "../../store/user.store";
@@ -59,7 +58,7 @@ export const InfoProduct: FC = (): JSX.Element => {
   return (
     <div className={styles.container}>
       <div className={styles.slider}>
-        <Slider type="info-product" />
+        <img src={productById?.imageUrl} alt={productById?.name} />
       </div>
       <div className={styles.info}>
         <Text type="h1">{productById?.name}</Text>
@@ -104,7 +103,12 @@ export const InfoProduct: FC = (): JSX.Element => {
         </div>
         <div className={styles.order}>
           <div className={styles.price}>
-            {newPrice} <span>{productById?.price} ₽</span>
+            {newPrice}
+            <span>
+              {`${productById?.price} ₽` === newPrice
+                ? ""
+                : `${productById?.price} ₽`}
+            </span>
           </div>
 
           <div className={styles.count}>

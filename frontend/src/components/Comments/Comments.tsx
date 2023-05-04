@@ -1,9 +1,9 @@
-import { FC, Fragment } from 'react';
-import styles from './Comments.module.scss';
-import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
-import { Text } from '../UI/Text/Text';
-import { useProduct } from '../../store/products.store';
-import { IComment } from '../../types/products.interface';
+import { FC, Fragment } from "react";
+import styles from "./Comments.module.scss";
+import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
+import { Text } from "../UI/Text/Text";
+import { useProduct } from "../../store/products.store";
+import { IComment } from "../../types/products.interface";
 
 export const Comments: FC = (): JSX.Element => {
   const { productById } = useProduct();
@@ -17,14 +17,16 @@ export const Comments: FC = (): JSX.Element => {
             <div className={styles.comment}>
               <div className={styles.user}>
                 <div className={styles.img}>
-                  {e.name.split(' ').map((i) => i[0])}
+                  {e.name.split(" ").map((i) => i[0])}
                 </div>
                 <div className={styles.name}>
                   <b>{e.name}</b> <br />
-                  {`${e.createdAt.slice(8, 10)}.${e.createdAt.slice(
-                    5,
-                    7
-                  )}.${e.createdAt.slice(0, 4)}`}
+                  {e.createdAt
+                    ? `${e.createdAt.slice(8, 10)}.${e.createdAt.slice(
+                        5,
+                        7
+                      )}.${e.createdAt.slice(0, 4)}`
+                    : `${new Date().toLocaleDateString()}`}
                 </div>
               </div>
               <div className={styles.text}>

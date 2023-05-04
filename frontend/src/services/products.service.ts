@@ -1,6 +1,6 @@
-import axios from 'axios';
-import { BASE_URL } from '../http/index';
-import { ICreateComment, ICreateProduct } from '../types/products.interface';
+import axios from "axios";
+import { BASE_URL } from "../http/index";
+import { ICreateComment, ICreateProduct } from "../types/products.interface";
 
 export const Products = {
   async getProducts() {
@@ -26,8 +26,8 @@ export const Products = {
     return await axios.delete(`${BASE_URL}/products/${id}`);
   },
 
-  async getAddComment(product: ICreateComment) {
-    return await axios.post(`${BASE_URL}/products/create`, product);
+  async getAddComment(id: string, comment: ICreateComment) {
+    return await axios.post(`${BASE_URL}/products/addComment/${id}`, comment);
   },
 
   // admin

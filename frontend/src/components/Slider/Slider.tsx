@@ -20,22 +20,18 @@ import { useProduct } from "../../store/products.store";
 SwiperCore.use([Navigation]);
 
 interface Props {
-  type?: "banner" | "cards" | "combo" | "info-product";
+  type?: "banner" | "cards" | "combo";
 }
 
 export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
   const [swiper, setSwiper] = useState<SwiperCore>();
   const [swiperCards, setSwiperCards] = useState<SwiperCore>();
-  const [swiperProduct, setSwiperProduct] = useState<SwiperCore>();
 
   const [prevActive, setPrevActive] = useState(true);
   const [nextActive, setNextActive] = useState(false);
 
   const [prevActiveCards, setPrevActiveCards] = useState(true);
   const [nextActiveCards, setNextActiveCards] = useState(false);
-
-  const [prevActiveProduct, setPrevActiveProduct] = useState(true);
-  const [nextActiveProduct, setNextActiveProduct] = useState(false);
 
   const isActice = () => {
     setPrevActive(1 === Number(swiper && swiper?.activeIndex + 1));
@@ -55,17 +51,7 @@ export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
     );
   };
 
-  const isActiceProduct = () => {
-    setPrevActiveProduct(
-      1 === Number(swiperProduct && swiperProduct?.activeIndex + 1)
-    );
-    setNextActiveProduct(
-      Number(swiperProduct?.slides?.length) ===
-        Number(swiperProduct && swiperProduct?.activeIndex + 1)
-    );
-  };
-
-  const { getProducts, products, productById } = useProduct();
+  const { getProducts, products } = useProduct();
 
   let changeComp = 0;
 
@@ -77,49 +63,6 @@ export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
   }, []);
 
   switch (type) {
-    case "info-product":
-      return (
-        <div className="slider_container">
-          <Swiper
-            onSwiper={(s) => setSwiperProduct(s)}
-            style={{ height: "100%" }}
-            onSlideChange={() => isActiceProduct()}
-          >
-            {[0].map((e) => {
-              return (
-                <SwiperSlide key={e}>
-                  <img
-                    src={productById?.imageUrl}
-                    alt="foot"
-                    className="foot-img"
-                  />
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-          <div
-            className="prev"
-            onClick={() => swiperProduct && swiperProduct.slidePrev()}
-            style={{ transform: "scale(.8)" }}
-          >
-            <HiArrowLongLeft
-              style={prevActiveProduct ? { color: "#E2E1E1" } : {}}
-              className="arrow_prev"
-            />
-          </div>
-          <div
-            className="next"
-            onClick={() => swiperProduct && swiperProduct.slideNext()}
-            style={{ transform: "scale(.8)" }}
-          >
-            <HiArrowLongRight
-              style={nextActiveProduct ? { color: "#E2E1E1" } : {}}
-              className="arrow_next"
-            />
-          </div>
-        </div>
-      );
-
     case "cards":
       return (
         <div className="slider_container">

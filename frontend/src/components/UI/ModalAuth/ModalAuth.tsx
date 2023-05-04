@@ -1,9 +1,9 @@
-import { Dispatch, FC, SetStateAction, useState } from 'react';
-import styles from './ModalAuth.module.scss';
-import { Button } from '../Button/Button';
-import { Text } from '../Text/Text';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { useAuth } from '../../../store/auth.store';
+import { Dispatch, FC, SetStateAction, useState } from "react";
+import styles from "./ModalAuth.module.scss";
+import { Button } from "../Button/Button";
+import { Text } from "../Text/Text";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useAuth } from "../../../store/auth.store";
 
 interface Props {
   isActive: boolean;
@@ -25,7 +25,7 @@ export const ModalAuth: FC<Props> = ({
   isActive,
   setIsActive,
 }): JSX.Element => {
-  const [selectAuth, setSelectAuth] = useState<'login' | 'register'>('login');
+  const [selectAuth, setSelectAuth] = useState<"login" | "register">("login");
 
   const { getLogin, getRegister } = useAuth();
 
@@ -73,14 +73,14 @@ export const ModalAuth: FC<Props> = ({
         className={`${styles.content} ${isActive && styles.activeContent}`}
         onClick={(e) => e.stopPropagation()}
       >
-        {selectAuth === 'login' ? (
+        {selectAuth === "login" ? (
           <>
             <Text className={styles.title} type="h1">
               Вход в кабинет
             </Text>
             <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
               <input
-                {...register('email', {
+                {...register("email", {
                   required: true,
                   pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
                 })}
@@ -88,24 +88,32 @@ export const ModalAuth: FC<Props> = ({
               />
               {errors.email && (
                 <span className={styles.error}>
-                  {errors.email.type === 'required'
-                    ? 'Поле на заполнено'
-                    : 'Почта введена не корректно'}
+                  {errors.email.type === "required"
+                    ? "Поле на заполнено"
+                    : "Почта введена не корректно"}
                 </span>
               )}
               <input
-                {...register('password', { required: true })}
+                {...register("password", {
+                  required: true,
+                  minLength: {
+                    value: 6,
+                    message: "Слишком короткий пароль",
+                  },
+                })}
                 placeholder="Пароль"
                 type="password"
               />
-              {errors.password && (
+              {errors.password && errors.password.type === "required" ? (
                 <span className={styles.error}>Поле на заполнено</span>
+              ) : (
+                <span className={styles.error}>{errors.password?.message}</span>
               )}
               <Button type="active">Войти</Button>
             </form>
             <Text
               className={styles.mess}
-              onClick={() => setSelectAuth('register')}
+              onClick={() => setSelectAuth("register")}
             >
               Зарегистрироваться
             </Text>
@@ -120,7 +128,7 @@ export const ModalAuth: FC<Props> = ({
               className={styles.form}
             >
               <input
-                {...registerRegister('email', {
+                {...registerRegister("email", {
                   required: true,
                   pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
                 })}
@@ -128,17 +136,17 @@ export const ModalAuth: FC<Props> = ({
               />
               {errorsRegister.email && (
                 <span className={styles.error}>
-                  {errorsRegister.email.type === 'required'
-                    ? 'Поле на заполнено'
-                    : 'Почта введена не корректно'}
+                  {errorsRegister.email.type === "required"
+                    ? "Поле на заполнено"
+                    : "Почта введена не корректно"}
                 </span>
               )}
               <input
-                {...registerRegister('password', {
+                {...registerRegister("password", {
                   required: true,
                   minLength: {
                     value: 6,
-                    message: 'Слишком короткий пароль',
+                    message: "Слишком короткий пароль",
                   },
                 })}
                 placeholder="Пароль"
@@ -146,19 +154,19 @@ export const ModalAuth: FC<Props> = ({
               />
               {errorsRegister.password && (
                 <span className={styles.error}>
-                  {errorsRegister.password.type === 'required'
-                    ? 'Поле на заполнено'
+                  {errorsRegister.password.type === "required"
+                    ? "Поле на заполнено"
                     : errorsRegister.password.message}
                 </span>
               )}
               <input
-                {...registerRegister('password_repeat', {
+                {...registerRegister("password_repeat", {
                   required: true,
                   validate: (value) =>
-                    value === watch('password') || 'Пароли не совпадают',
+                    value === watch("password") || "Пароли не совпадают",
                   minLength: {
                     value: 6,
-                    message: 'Слишком короткий пароль',
+                    message: "Слишком короткий пароль",
                   },
                 })}
                 placeholder="Пароль"
@@ -166,8 +174,8 @@ export const ModalAuth: FC<Props> = ({
               />
               {errorsRegister.password_repeat && (
                 <span className={styles.error}>
-                  {errorsRegister.password_repeat.type === 'required'
-                    ? 'Поле на заполнено'
+                  {errorsRegister.password_repeat.type === "required"
+                    ? "Поле на заполнено"
                     : errorsRegister.password_repeat.message}
                 </span>
               )}
@@ -175,7 +183,7 @@ export const ModalAuth: FC<Props> = ({
             </form>
             <Text
               className={styles.mess}
-              onClick={() => setSelectAuth('login')}
+              onClick={() => setSelectAuth("login")}
             >
               Войти в кабинет
             </Text>

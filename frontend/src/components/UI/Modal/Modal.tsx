@@ -4,6 +4,7 @@ import { Button } from "../Button/Button";
 import { Text } from "../Text/Text";
 import { useUser } from "../../../store/user.store";
 import { useBasket } from "../../../store/basket.store";
+import { CardBasket } from "../../CardBasket/CardBasket";
 
 export const Modal: FC = (): JSX.Element => {
   const { isActive, setIsActive } = useBasket();
@@ -26,7 +27,7 @@ export const Modal: FC = (): JSX.Element => {
 
   profile?.basket.forEach((e) => {
     price += Math.round(
-      (e.price * (e?.quantity ? e?.quantity : 1) * (100 - e.discount)) / 100
+      (e.price * (e.quantity ? e.quantity : 1) * (100 - e.discount)) / 100
     );
   });
 
@@ -41,12 +42,20 @@ export const Modal: FC = (): JSX.Element => {
     >
       <div className={styles.content}>
         {profile?.basket.length ? (
-          1
+          profile.basket
+            .map((product) => <CardBasket key={product._id} {...product} />)
+            .reverse()
         ) : (
-          <>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <img src="/ic2.svg" alt="logo" />
             <Text type="h2">Ваша корзина пуста</Text>
-          </>
+          </div>
         )}
       </div>
       <div className={styles.buy}>
@@ -54,7 +63,7 @@ export const Modal: FC = (): JSX.Element => {
           Сумма заказа: <b>{price} ₽ </b>
         </div>
         <Button type="active" className={styles.btn}>
-          В каталог
+          {profile?.basket.length ? "Оформить заказ" : "В каталог"}
         </Button>
       </div>
     </div>

@@ -84,9 +84,9 @@ export const Header: FC = (): JSX.Element => {
               </div>
             )}
           </nav>
-          {/* Карзина */}
+          {/* Корзина */}
           <Modal />
-          {/* /Карзина */}
+          {/* /Корзина */}
           {/* Атвторизация */}
           <ModalAuth isActive={isActiveAuth} setIsActive={setIsActiveAuth} />
           {/* /Атвторизация */}

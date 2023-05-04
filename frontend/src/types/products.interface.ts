@@ -37,7 +37,7 @@ export interface IProduct {
   discount: number;
   description: string;
   imageUrl: string;
-  comments: [];
+  comments: IComment[];
   info: {
     weight: string;
     proteins: string;

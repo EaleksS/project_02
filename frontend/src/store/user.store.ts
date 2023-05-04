@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import { IUser } from "../types/auth.interface";
 import { User } from "../services/user.service";
 import { IProfile } from "../types/user.interface";
 import { IProduct } from "../types/products.interface";
