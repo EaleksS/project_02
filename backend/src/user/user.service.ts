@@ -8,6 +8,8 @@ import { InjectModel } from 'nestjs-typegoose'
 import { ModelType } from '@typegoose/typegoose/lib/types'
 import { UpdateUserDto } from './dto/update-user.dto'
 import { getSalt, hash } from 'bcryptjs'
+import { AddBasketDto } from './dto/add_basket.dto'
+import { DeleteBasketDto } from './dto/delete_in_basket.dto'
 
 @Injectable()
 export class UserService {
@@ -51,22 +53,48 @@ export class UserService {
   async getAll(searchTerm?: string) {
     let options = {}
 
-    if(searchTerm) {
+    if (searchTerm) {
       options = {
         $or: [
           {
-            email: new RegExp(searchTerm, 'i')
-          }
-        ]
+            email: new RegExp(searchTerm, 'i'),
+          },
+        ],
       }
     }
 
-    return this.UserModel.find(options).select('-password -updatedAt -__v').sort({
-      createdAt: 'desc'
-    })
+    return this.UserModel.find(options)
+      .select('-password -updatedAt -__v')
+      .sort({
+        createdAt: 'desc',
+      })
   }
 
   async delete(id: string) {
     return this.UserModel.findByIdAndDelete(id).exec()
+  }
+
+  async addInBasket(id: string, dto: AddBasketDto) {
+    const user = this.byId(id)
+
+    const basket = (await user).basket
+
+    const isSameProduct = basket.filter((product) => product._id === dto._id)
+
+    if (isSameProduct.length === 1)
+      throw new NotFoundException('Такая уже есть в корзине')
+    ;(await user).basket.push(dto)
+
+    return (await user).save()
+  }
+
+  async deleteInBasket(id: string, dto: DeleteBasketDto) {
+    const user = this.byId(id)
+
+    ;(await user).basket = (await user).basket.filter(
+      (product) => product._id !== dto._id,
+    )
+
+    return (await user).save()
   }
 }

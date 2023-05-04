@@ -5,6 +5,7 @@ import {
   Get,
   HttpCode,
   Param,
+  Post,
   Put,
   Query,
   UsePipes,
@@ -15,6 +16,9 @@ import { Auth } from 'src/auth/decorators/auth.decorator'
 import { User } from './decorators/user.decorator'
 import { UpdateUserDto } from './dto/update-user.dto'
 import { IdValidationPipe } from 'src/pipes/id.validation.pipe'
+import { ProductDto } from 'src/products/dto/product.dto'
+import { AddBasketDto } from './dto/add_basket.dto'
+import { DeleteBasketDto } from './dto/delete_in_basket.dto'
 
 @Controller('users')
 export class UserController {
@@ -68,5 +72,17 @@ export class UserController {
   @Auth('admin')
   async deleteUser(@Param('id', IdValidationPipe) id: string) {
     return this.userService.delete(id)
+  }
+
+  @Post('addInBasket/:id')
+  @HttpCode(200)
+  async addInBasket(@Param('id') id: string, @Body() dto: AddBasketDto) {
+    return this.userService.addInBasket(id, dto)
+  }
+
+  @Delete('deleteInBasket/:id')
+  @HttpCode(200)
+  async deleteInBasket(@Param('id') id: string, @Body() dto: DeleteBasketDto) {
+    return this.userService.deleteInBasket(id, dto)
   }
 }

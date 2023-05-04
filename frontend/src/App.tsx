@@ -1,9 +1,9 @@
-import { Route, Routes } from 'react-router-dom';
-import { NotFound } from './pages/NotFound';
-import { Main } from './pages/Main';
-import { Products } from './pages/Products';
-import { useAuth } from './store/auth.store';
-import { useEffect } from 'react';
+import { Route, Routes } from "react-router-dom";
+import { NotFound } from "./pages/NotFound";
+import { Main } from "./pages/Main";
+import { Products } from "./pages/Products";
+import { useAuth } from "./store/auth.store";
+import { useEffect } from "react";
 
 function App() {
   const { getRefresh } = useAuth();
@@ -11,8 +11,6 @@ function App() {
   useEffect(() => {
     getRefresh();
   }, [getRefresh]);
-
-
 
   return (
     <Routes>

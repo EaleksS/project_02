@@ -71,7 +71,7 @@ export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
 
   useEffect(() => {
     if (changeComp === 0) getProducts();
-     changeComp++;
+    changeComp++;
   });
 
   switch (type) {

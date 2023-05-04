@@ -1,5 +1,6 @@
 import { prop } from '@typegoose/typegoose'
 import { TimeStamps, Base } from '@typegoose/typegoose/lib/defaultClasses'
+import { BasketModel } from './basket.model'
 
 export interface UserModel extends Base {}
 
@@ -17,7 +18,7 @@ export class UserModel extends TimeStamps {
   favorite?: []
 
   @prop({ default: [] })
-  basket?: []
+  basket?: BasketModel[]
 
   @prop({ default: [] })
   order?: []

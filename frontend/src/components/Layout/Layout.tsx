@@ -1,9 +1,9 @@
-import { FC, ReactNode } from 'react';
-import React from 'react';
-import { Header } from '../Header/Header';
-import { Footer } from '../Footer/Footer';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import { FC, ReactNode } from "react";
+import React from "react";
+import { Header } from "../Header/Header";
+import { Footer } from "../Footer/Footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 interface Props {
   children: ReactNode;
 }

@@ -36,7 +36,7 @@ export class AuthService {
     const result = await this.jwtService.verifyAsync(refreshToken)
     if (!result) throw new UnauthorizedException('Invalid token or expired')
 
-    const user = await this.UserModel.findById(result._id)
+    const user = await this.UserModel.findById(result.id)
 
     const tokens = await this.issueTokenPair(String(user.id))
 
