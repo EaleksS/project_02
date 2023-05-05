@@ -29,7 +29,7 @@ export const Comments: FC = (): JSX.Element => {
                 )}
                 <div className={styles.img}>
                   {e.name.split(" ").map((i) => (
-                    <Fragment key={i}>{i[0].toUpperCase()}</Fragment>
+                    <Fragment key={i}>{i[0]?.toUpperCase()}</Fragment>
                   ))}
                 </div>
                 <div className={styles.name}>
