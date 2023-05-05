@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction, useEffect } from "react";
+import { FC, useEffect } from "react";
 import styles from "./Modal.module.scss";
 import { Button } from "../Button/Button";
 import { Text } from "../Text/Text";

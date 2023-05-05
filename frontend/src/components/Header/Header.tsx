@@ -14,7 +14,7 @@ export const Header: FC = (): JSX.Element => {
   const [isActiveAuth, setIsActiveAuth] = useState(false);
 
   const { user, getLogout } = useAuth();
-  const { isActive, setIsActive } = useBasket();
+  const { setIsActive } = useBasket();
 
   const navigate = useNavigate();
 

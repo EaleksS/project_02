@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { devtools, persist } from "zustand/middleware";
+import { devtools } from "zustand/middleware";
 import { User } from "../services/user.service";
 import { IProfile } from "../types/user.interface";
 import { IProduct } from "../types/products.interface";
