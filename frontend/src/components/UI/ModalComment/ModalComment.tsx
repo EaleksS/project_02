@@ -86,7 +86,7 @@ export const ModalComment: FC<Props> = ({
               <div>
                 <input
                   {...register("email", {
-                    required: true,
+                    required: false,
                     pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
                   })}
                   placeholder="Почта"

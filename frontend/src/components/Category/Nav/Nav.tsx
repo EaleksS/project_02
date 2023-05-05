@@ -1,14 +1,16 @@
-import { FC, useState } from 'react';
-import styles from './Nav.module.scss';
-import { Button } from '../../UI/Button/Button';
-import { Text } from '../../UI/Text/Text';
+import { FC } from "react";
+import styles from "./Nav.module.scss";
+import { Button } from "../../UI/Button/Button";
+import { Text } from "../../UI/Text/Text";
+import { useStore } from "../store";
 
 export const Nav: FC = (): JSX.Element => {
-  const [isActive, setIsActive] = useState('pizza');
+  const { selectType, setSelectType} = useStore();
+
 
   return (
     <div className={styles.nav}>
-      <Button
+      {/* <Button
         className={styles.btn}
         type="category"
         active={isActive === 'pizza' ? true : false}
@@ -20,8 +22,8 @@ export const Nav: FC = (): JSX.Element => {
           style={{ marginRight: '10px' }}
         />
         <Text>Пицца</Text>
-      </Button>
-      <Button
+      </Button> */}
+      {/* <Button
         className={styles.btn}
         type="category"
         onClick={() => setIsActive('sushi')}
@@ -33,21 +35,21 @@ export const Nav: FC = (): JSX.Element => {
           style={{ marginRight: '10px' }}
         />
         <Text>Суши</Text>
-      </Button>
+      </Button> */}
       <Button
         className={styles.btn}
         type="category"
-        onClick={() => setIsActive('rolle')}
-        active={isActive === 'rolle' ? true : false}
+        onClick={() => setSelectType("rolls")}
+        active={selectType === "rolls" ? true : false}
       >
         <img
           src="./logofoot/rolle.svg"
           alt="foot"
-          style={{ marginRight: '10px' }}
+          style={{ marginRight: "10px" }}
         />
         <Text>Роллы</Text>
       </Button>
-      <Button
+      {/* <Button
         className={styles.btn}
         type="category"
         onClick={() => setIsActive('set')}
@@ -59,8 +61,8 @@ export const Nav: FC = (): JSX.Element => {
           style={{ marginRight: '10px' }}
         />
         <Text>Сеты</Text>
-      </Button>
-      <Button
+      </Button> */}
+      {/* <Button
         className={styles.btn}
         type="category"
         onClick={() => setIsActive('wok')}
@@ -72,8 +74,8 @@ export const Nav: FC = (): JSX.Element => {
           style={{ marginRight: '10px' }}
         />
         <Text>Wok</Text>
-      </Button>
-      <Button
+      </Button> */}
+      {/* <Button
         className={styles.btn}
         type="category"
         onClick={() => setIsActive('soup')}
@@ -85,8 +87,8 @@ export const Nav: FC = (): JSX.Element => {
           style={{ marginRight: '10px' }}
         />
         <Text>Супы</Text>
-      </Button>
-      <Button
+      </Button> */}
+      {/* <Button
         className={styles.btn}
         type="category"
         onClick={() => setIsActive('salad')}
@@ -98,8 +100,8 @@ export const Nav: FC = (): JSX.Element => {
           style={{ marginRight: '10px' }}
         />
         <Text>Салаты</Text>
-      </Button>
-      <Button
+      </Button> */}
+      {/* <Button
         className={styles.btn}
         type="category"
         onClick={() => setIsActive('dessert')}
@@ -111,21 +113,21 @@ export const Nav: FC = (): JSX.Element => {
           style={{ marginRight: '10px' }}
         />
         <Text>Десерты</Text>
-      </Button>
+      </Button> */}
       <Button
         className={styles.btn}
         type="category"
-        onClick={() => setIsActive('drink')}
-        active={isActive === 'drink' ? true : false}
+        onClick={() => setSelectType("drink")}
+        active={selectType === "drink" ? true : false}
       >
         <img
           src="./logofoot/drink.svg"
           alt="foot"
-          style={{ marginRight: '10px' }}
+          style={{ marginRight: "10px" }}
         />
         <Text>Напитки</Text>
       </Button>
-      <Button
+      {/* <Button
         className={styles.btn}
         type="category"
         onClick={() => setIsActive('sale')}
@@ -137,7 +139,7 @@ export const Nav: FC = (): JSX.Element => {
           style={{ marginRight: '10px' }}
         />
         <Text>Акции</Text>
-      </Button>
+      </Button> */}
     </div>
   );
 };

@@ -4,9 +4,11 @@ import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 import { Text } from "../UI/Text/Text";
 import { useProduct } from "../../store/products.store";
 import { IComment } from "../../types/products.interface";
+import { useUser } from "../../store/user.store";
 
 export const Comments: FC = (): JSX.Element => {
-  const { productById } = useProduct();
+  const { productById, getDeleteComment } = useProduct();
+  const { profile } = useUser();
 
   return (
     <div className={styles.comments}>
@@ -16,6 +18,15 @@ export const Comments: FC = (): JSX.Element => {
             <div className={styles.line} />
             <div className={styles.comment}>
               <div className={styles.user}>
+                {profile?.isAdmin && (
+                  <div className={styles.delete}>
+                    <button
+                      onClick={() => getDeleteComment(productById._id, e._id)}
+                    >
+                      Удалить
+                    </button>
+                  </div>
+                )}
                 <div className={styles.img}>
                   {e.name.split(" ").map((i) => i[0])}
                 </div>

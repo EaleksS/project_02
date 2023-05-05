@@ -1,8 +1,13 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { ICreateComment, IProduct } from "../types/products.interface";
+import {
+  IComment,
+  ICreateComment,
+  IProduct,
+} from "../types/products.interface";
 import { Products } from "../services/products.service";
 import { toast } from "react-toastify";
+import { produce } from "../../node_modules/immer";
 
 type useProduct = {
   isError: boolean;
@@ -12,11 +17,12 @@ type useProduct = {
   productById: null | IProduct;
   getProductById: (id: string) => void;
   getAddComment: (id: string, comment: ICreateComment) => void;
+  getDeleteComment: (id: string, commentId: string) => void;
 };
 
 export const useProduct = create(
   persist<useProduct>(
-    (set, get) => ({
+    (set) => ({
       isError: false,
       setIsError: (bool) => {
         set({ isError: bool });
@@ -38,15 +44,31 @@ export const useProduct = create(
           .then(() => {
             toast.success(`Коммент добавлен, уважаемый ${comment.name}`);
 
-            get().productById?.comments.push({
-              ...comment,
-              createdAt: "",
-              _id: String(Math.random()),
-            });
-
-            set({ productById: get().productById });
+            set(
+              produce((state) => {
+                state.productById.comments = [
+                  ...state.productById.comments,
+                  { ...comment, createdAt: "", _id: String(Math.random()) },
+                ];
+              })
+            );
           })
           .catch(() => toast.error(`Коммент не добален, произошла ошибка`));
+      },
+      getDeleteComment: (id, commentId) => {
+        Products.getDeleteComment(id, commentId)
+          .then(() => {
+            toast.success(`Коммент удален`);
+
+            set(
+              produce((state) => {
+                state.productById.comments = state.productById?.comments.filter(
+                  (comment: IComment) => commentId !== comment._id
+                );
+              })
+            );
+          })
+          .catch(() => toast.error(`Коммент не удален. Произошла ошибка`));
       },
     }),
     { name: "products" }

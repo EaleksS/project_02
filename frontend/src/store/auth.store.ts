@@ -30,8 +30,6 @@ export const useAuth = create<useAuth>((set) => ({
     Auth.getRefresh()
       .then((res) => {
         set({ user: res.data });
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("refreshToken");
         localStorage.setItem("accessToken", res.data.accessToken);
         localStorage.setItem("refreshToken", res.data.refreshToken);
       })
@@ -51,5 +49,6 @@ export const useAuth = create<useAuth>((set) => ({
     set({ user: null });
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
+    location.reload();
   },
 }));

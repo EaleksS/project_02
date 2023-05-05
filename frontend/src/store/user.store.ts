@@ -3,6 +3,7 @@ import { devtools } from "zustand/middleware";
 import { User } from "../services/user.service";
 import { IProfile } from "../types/user.interface";
 import { IProduct } from "../types/products.interface";
+import { produce } from "immer";
 
 type useUser = {
   isError: boolean;
@@ -15,7 +16,7 @@ type useUser = {
 };
 
 export const useUser = create(
-  devtools<useUser>((set, get) => ({
+  devtools<useUser>((set) => ({
     isError: false,
     setIsError: (bool) => {
       set({ isError: bool });
@@ -35,29 +36,20 @@ export const useUser = create(
         .catch((err) => console.log(err));
     },
     addInBasket: (product) => {
-      get().profile?.basket.push(product);
-
-      set({ profile: get().profile });
+      set(
+        produce((state) => {
+          state.profile.basket = [...state.profile.basket, product];
+        })
+      );
     },
     deleteInBasket: (product) => {
-      const profile = get().profile;
-
-      if (profile) {
-        const profile2: IProfile = {
-          _id: profile._id,
-          email: profile.email,
-          password: profile.password,
-          isAdmin: profile.isAdmin,
-          favorite: profile.favorite,
-          basket: profile.basket.filter((e) => e._id !== product._id),
-          order: profile.order,
-          createdAt: profile.createdAt,
-          updatedAt: profile.updatedAt,
-          __v: profile.__v,
-        };
-
-        profile2 && set({ profile: profile2 });
-      }
+      set(
+        produce((state) => {
+          state.profile.basket = state.profile?.basket.filter(
+            (pro: IProduct) => product._id !== pro._id
+          );
+        })
+      );
     },
   }))
 );

@@ -5,9 +5,12 @@ import { Text } from "../Text/Text";
 import { useUser } from "../../../store/user.store";
 import { useBasket } from "../../../store/basket.store";
 import { CardBasket } from "../../CardBasket/CardBasket";
+import { useNavigate } from "react-router-dom";
 
 export const Modal: FC = (): JSX.Element => {
   const { isActive, setIsActive } = useBasket();
+
+  const navigate = useNavigate();
 
   const handleClickRemove = () => {
     setIsActive && setIsActive(false);
@@ -62,9 +65,11 @@ export const Modal: FC = (): JSX.Element => {
         <div className={styles.count}>
           Сумма заказа: <b>{price} ₽ </b>
         </div>
-        <Button type="active" className={styles.btn}>
-          {profile?.basket.length ? "Оформить заказ" : "В каталог"}
-        </Button>
+        <div onClick={() => navigate("/catalog")}>
+          <Button type="active" className={styles.btn}>
+            {profile?.basket.length ? "Оформить заказ" : "В каталог"}
+          </Button>
+        </div>
       </div>
     </div>
   );

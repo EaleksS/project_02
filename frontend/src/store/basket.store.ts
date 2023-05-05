@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import { Basket } from "../services/basket.service";
 import { IProduct } from "../types/products.interface";
+import { toast } from "react-toastify";
 
 type useBasket = {
   isActive: boolean;
@@ -30,14 +31,12 @@ export const useBasket = create(
     },
     getAddInBasket: (id, product) => {
       Basket.getAddInBasket(id, product)
-        .then(() => console.log("добавлен"))
+        .then(() => toast("Добавлен"))
         .catch((err) => console.log(err));
-
-      
     },
     getDeleteInBasket: (id, idProduct) => {
       Basket.getDeleteInBasket(id, idProduct)
-        .then(() => console.log("удален"))
+        .then(() => toast("Удален"))
         .catch((err) => console.log(err));
     },
   }))

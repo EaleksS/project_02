@@ -52,8 +52,9 @@ export class AuthService {
 
     if (oldUser)
       throw new BadRequestException(
-        'User with this email is already in the system',
+        'Пользователь с таким электронным адресом уже есть в системе',
       )
+    // ('User with this email is already in the system')
 
     const salt = await genSalt(10)
 
@@ -75,7 +76,8 @@ export class AuthService {
   async validateUser(dto: AuthDto): Promise<UserModel> {
     const user = await this.UserModel.findOne({ email: dto.email })
 
-    if (!user) throw new UnauthorizedException('User not found')
+    if (!user) throw new UnauthorizedException('Пользователь не найден')
+    // ('User not found')
 
     const isValidPassword = await compare(dto.password, user.password)
     if (!isValidPassword) throw new UnauthorizedException('Invalid password')

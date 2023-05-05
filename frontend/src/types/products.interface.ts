@@ -38,6 +38,7 @@ export interface IProduct {
   description: string;
   imageUrl: string;
   comments: IComment[];
+  type: string;
   info: {
     weight: string;
     proteins: string;

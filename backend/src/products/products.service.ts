@@ -25,14 +25,15 @@ export class ProductsService {
 
   async getProductById(id: string) {
     const product = await this.productModel.findById(id)
-    if (!product) throw new NotFoundException('Product not found')
+    if (!product) throw new NotFoundException('Продукт не найден')
+    // 'Product not found'
 
     return product
   }
 
   async updateProduct(id: string, updateProductDto: ProductDto) {
     const product = await this.productModel.findById(id)
-    if (!product) throw new NotFoundException('Product not found')
+    if (!product) throw new NotFoundException('Продукт не найден')
 
     return await this.productModel.findByIdAndUpdate(id, updateProductDto, {
       new: true,
@@ -41,7 +42,7 @@ export class ProductsService {
 
   async deleteProduct(id: string) {
     const product = await this.productModel.findById(id)
-    if (!product) throw new NotFoundException('Product not found')
+    if (!product) throw new NotFoundException('Продукт не найден')
 
     return await this.productModel.findByIdAndRemove(id)
   }
@@ -49,7 +50,7 @@ export class ProductsService {
   async addComment(id: string, addCommentDto: CommentDto) {
     const product = await this.productModel.findById(id)
     if (!product) {
-      throw new NotFoundException('Product not found')
+      throw new NotFoundException('Продукт не найден')
     }
     const comment = {
       ...addCommentDto,
@@ -64,7 +65,7 @@ export class ProductsService {
   async deleteComment(id: string, commentId: string) {
     const product = await this.productModel.findById(id)
     if (!product) {
-      throw new NotFoundException('Product not found')
+      throw new NotFoundException('Продукт не найден')
     }
 
     product.comments = product.comments.filter(

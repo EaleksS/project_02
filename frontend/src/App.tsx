@@ -5,6 +5,7 @@ import { Products } from "./pages/Products";
 import { useAuth } from "./store/auth.store";
 import { useEffect } from "react";
 import { useUser } from "./store/user.store";
+import { Catalog } from "./pages/Catalog";
 
 function App() {
   const { getRefresh } = useAuth();
@@ -27,7 +28,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Main />} />
-      <Route path="/catalog" element={<Main />} />
+      <Route path="/catalog" element={<Catalog />} />
       <Route path="/products/:id" element={<Products />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

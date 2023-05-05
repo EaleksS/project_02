@@ -55,7 +55,11 @@ export const Card: FC<IProduct> = (props): JSX.Element => {
         <Text type="h1" className={styles.title}>
           {props.name}
         </Text>
-        <Text className={styles.desc}>{props.description}</Text>
+        <Text className={styles.desc}>
+          {props.description.length < 90
+            ? props.description
+            : `${props.description.slice(0, 90)}...`}
+        </Text>
         <div className={styles.down}>
           <div className={styles.price}>
             {newPrice}

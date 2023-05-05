@@ -19,12 +19,13 @@ export class UserService {
 
   async byId(_id: string) {
     const user = await this.UserModel.findById(_id)
-    if (!user) throw new NotFoundException('User not found')
+    if (!user) throw new NotFoundException('Пользователь не найден')
+    // 'User not found'
 
     return user
   }
 
-  async updateProfile(_id, dto: UpdateUserDto) {
+  async updateProfile(_id: string, dto: UpdateUserDto) {
     const user = await this.byId(_id)
     const isSameUser = await this.UserModel.findOne({ email: dto.email })
 
@@ -81,8 +82,9 @@ export class UserService {
 
     const isSameProduct = basket.filter((product) => product._id === dto._id)
 
-    if (isSameProduct.length >= 1) throw new NotFoundException('Такая уже есть в корзине')
-
+    if (isSameProduct.length >= 1)
+      throw new NotFoundException('Такая уже есть в корзине')
+      // 'This one is already in the basket'
     ;(await user).basket.push(dto)
 
     return (await user).save()
