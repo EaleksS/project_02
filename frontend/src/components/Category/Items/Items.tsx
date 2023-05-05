@@ -12,7 +12,7 @@ export const Items: FC = (): JSX.Element => {
     <div className={styles.items}>
       {products &&
         products
-          .filter((f) => f.type === selectType)
+          .filter((f) => f.type.includes(selectType))
           .slice(start, end)
           .map((e) => <Card key={e._id} {...e} />)}
     </div>

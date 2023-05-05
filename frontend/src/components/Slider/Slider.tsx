@@ -16,6 +16,7 @@ import { FC, useEffect, useState } from "react";
 import { HiArrowLongLeft, HiArrowLongRight } from "react-icons/hi2";
 import { Card } from "../Card/Card";
 import { useProduct } from "../../store/products.store";
+import { useStore } from "../Category/store";
 
 SwiperCore.use([Navigation]);
 
@@ -24,6 +25,9 @@ interface Props {
 }
 
 export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
+  // Стейт категория
+  const { selectType } = useStore();
+
   const [swiper, setSwiper] = useState<SwiperCore>();
   const [swiperCards, setSwiperCards] = useState<SwiperCore>();
 
@@ -114,13 +118,15 @@ export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
             style={{ padding: "10px" }}
           >
             {products &&
-              products.map((e) => {
-                return (
-                  <SwiperSlide key={e._id}>
-                    <Card {...e} />
-                  </SwiperSlide>
-                );
-              })}
+              products
+                .filter((f) => f.type.includes("combo"))
+                .map((e) => {
+                  return (
+                    <SwiperSlide key={e._id}>
+                      <Card {...e} />
+                    </SwiperSlide>
+                  );
+                })}
           </Swiper>
           {!prevActiveCards && (
             <div

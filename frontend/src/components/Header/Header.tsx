@@ -9,12 +9,16 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../store/auth.store";
 import { useUser } from "../../store/user.store";
 import { useBasket } from "../../store/basket.store";
+import { useStore } from "../Category/store";
 
 export const Header: FC = (): JSX.Element => {
   const [isActiveAuth, setIsActiveAuth] = useState(false);
 
   const { user, getLogout } = useAuth();
   const { setIsActive } = useBasket();
+
+  // Стейт категория
+  const { setSelectType } = useStore();
 
   const navigate = useNavigate();
 
@@ -93,15 +97,29 @@ export const Header: FC = (): JSX.Element => {
           <nav className={styles.down}>
             <ul>
               <li>
-                <img src="/1.svg" alt="logo foot" />
+                <img
+                  src="/1.svg"
+                  alt="pizza"
+                  onClick={() => {
+                    setSelectType("pizza");
+                    navigate("/catalog");
+                  }}
+                />
               </li>
-              <li>
+              {/* <li>
                 <img src="/2.svg" alt="logo foot" />
-              </li>
+              </li> */}
               <li>
-                <img src="/3.svg" alt="logo foot" />
+                <img
+                  src="/3.svg"
+                  alt="rolls"
+                  onClick={() => {
+                    setSelectType("rolls");
+                    navigate("/catalog");
+                  }}
+                />
               </li>
-              <li>
+              {/* <li>
                 <img src="/4.svg" alt="logo foot" />
               </li>
               <li>
@@ -115,12 +133,19 @@ export const Header: FC = (): JSX.Element => {
               </li>
               <li>
                 <img src="/8.svg" alt="logo foot" />
+              </li> */}
+              <li>
+                <img
+                  src="/9.svg"
+                  alt="drink"
+                  onClick={() => {
+                    setSelectType("drink");
+                    navigate("/catalog");
+                  }}
+                />
               </li>
               <li>
-                <img src="/9.svg" alt="logo foot" />
-              </li>
-              <li>
-                <img src="/10.svg" alt="logo foot" />
+                <img src="/10.svg" alt="акции" />
               </li>
             </ul>
           </nav>

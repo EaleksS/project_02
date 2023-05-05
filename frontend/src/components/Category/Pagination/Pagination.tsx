@@ -23,7 +23,9 @@ export const Pagination: FC = (): JSX.Element => {
       for (
         let i = 1;
         i <=
-        Math.ceil(products.filter((f) => f.type === selectType).length / 6);
+        Math.ceil(
+          products.filter((f) => f.type.includes(selectType)).length / 6
+        );
         i++
       ) {
         setArray((prev) => [...prev, i]);

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { devtools } from "zustand/middleware";
+import { persist } from "zustand/middleware";
 
 type useStore = {
   start: number;
@@ -15,7 +15,7 @@ type useStore = {
 };
 
 export const useStore = create(
-  devtools<useStore>(
+  persist<useStore>(
     (set, get) => ({
       start: 0,
       setStart: (number) => {
@@ -29,7 +29,7 @@ export const useStore = create(
       setPaginate: (number) => {
         set({ paginate: [...get().paginate, number] });
       },
-      selectType: "rolls",
+      selectType: "pizza",
       setSelectType: (type) => {
         set({ selectType: type });
       },
@@ -37,7 +37,7 @@ export const useStore = create(
       setActive: (number) => {
         set({ active: number });
       },
-    })
-    // { name: "catalog" }
+    }),
+    { name: "catalog" }
   )
 );

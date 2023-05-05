@@ -10,11 +10,11 @@ export const Nav: FC = (): JSX.Element => {
 
   return (
     <div className={styles.nav}>
-      {/* <Button
+      <Button
         className={styles.btn}
         type="category"
-        active={isActive === 'pizza' ? true : false}
-        onClick={() => setIsActive('pizza')}
+        active={selectType === 'pizza' ? true : false}
+        onClick={() => setSelectType('pizza')}
       >
         <img
           src="./logofoot/pizza.svg"
@@ -22,7 +22,7 @@ export const Nav: FC = (): JSX.Element => {
           style={{ marginRight: '10px' }}
         />
         <Text>Пицца</Text>
-      </Button> */}
+      </Button>
       {/* <Button
         className={styles.btn}
         type="category"
