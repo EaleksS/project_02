@@ -16,7 +16,6 @@ import { FC, useEffect, useState } from "react";
 import { HiArrowLongLeft, HiArrowLongRight } from "react-icons/hi2";
 import { Card } from "../Card/Card";
 import { useProduct } from "../../store/products.store";
-import { useStore } from "../Category/store";
 
 SwiperCore.use([Navigation]);
 
