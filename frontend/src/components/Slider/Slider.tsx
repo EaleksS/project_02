@@ -25,8 +25,6 @@ interface Props {
 }
 
 export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
-  // Стейт категория
-  const { selectType } = useStore();
 
   const [swiper, setSwiper] = useState<SwiperCore>();
   const [swiperCards, setSwiperCards] = useState<SwiperCore>();
