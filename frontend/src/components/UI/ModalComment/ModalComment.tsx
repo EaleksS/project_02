@@ -67,8 +67,15 @@ export const ModalComment: FC<Props> = ({
               <div className={styles.stars}>
                 {[1, 2, 3, 4, 5].map((s) => {
                   if (rating >= s)
-                    return <BsStarFill onMouseEnter={() => setRating(s)} />;
-                  return <BsStar onMouseEnter={() => setRating(s)} />;
+                    return (
+                      <BsStarFill
+                        key={s + 100}
+                        onMouseEnter={() => setRating(s)}
+                      />
+                    );
+                  return (
+                    <BsStar key={s + 100} onMouseEnter={() => setRating(s)} />
+                  );
                 })}
               </div>
             </div>

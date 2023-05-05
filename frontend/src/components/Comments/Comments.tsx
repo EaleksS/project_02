@@ -28,7 +28,9 @@ export const Comments: FC = (): JSX.Element => {
                   </div>
                 )}
                 <div className={styles.img}>
-                  {e.name.split(" ").map((i) => i[0])}
+                  {e.name.split(" ").map((i) => (
+                    <Fragment key={i}>{i[0].toUpperCase()}</Fragment>
+                  ))}
                 </div>
                 <div className={styles.name}>
                   <b>{e.name}</b> <br />
@@ -44,10 +46,10 @@ export const Comments: FC = (): JSX.Element => {
                 <div className={styles.rating}>
                   {[1, 2, 3, 4, 5].map((s) => {
                     if (s - 0.5 <= e.rating && e.rating <= s - 0.1)
-                      return <BsStarHalf />;
+                      return <BsStarHalf key={s + 10} />;
 
-                    if (e.rating >= s) return <BsStarFill />;
-                    return <BsStar />;
+                    if (e.rating >= s) return <BsStarFill key={s + 10} />;
+                    return <BsStar key={s + 10} />;
                   })}
                 </div>
                 <Text>{e.comment}</Text>

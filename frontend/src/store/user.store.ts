@@ -25,7 +25,7 @@ export const useUser = create(
     getProfile: () => {
       User.getProfile()
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           set({ profile: res.data });
         })
         .catch((err) => console.log(err));

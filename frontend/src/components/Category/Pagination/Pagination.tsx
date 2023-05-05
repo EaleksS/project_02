@@ -71,26 +71,27 @@ export const Pagination: FC = (): JSX.Element => {
             <button
               key={i}
               onClick={() => {
+                if (i === 1) {
+                  setStart(0);
+                  setEnd(6);
+                }
+                if (i === 2) {
+                  setStart(6);
+                  setEnd(12);
+                }
+                if (i === 3) {
+                  setStart(12);
+                  setEnd(18);
+                }
+                if (i === 4) {
+                  setStart(18);
+                  setEnd(24);
+                }
+                if (i === 5) {
+                  setStart(24);
+                  setEnd(30);
+                }
                 setActive(i);
-
-                setStart(
-                  active !== i
-                    ? active > i
-                      ? i === 0
-                        ? 1
-                        : start - 6
-                      : start + 6
-                    : start
-                );
-                setEnd(
-                  active !== i
-                    ? active > i
-                      ? i === 1
-                        ? 6
-                        : end - 6
-                      : end + 6
-                    : end
-                );
               }}
               className={active === i ? styles.active : ""}
             >

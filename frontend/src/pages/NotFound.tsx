@@ -10,7 +10,7 @@ export const NotFound: FC = (): JSX.Element => {
     <Layout>
       <div className={styles.main}>
         <div className={styles.not_found}>
-          <img src="./404.svg" alt="404" />
+          <img src="/404.svg" alt="404" />
         </div>
         <div className={styles.content}>
           <Text type="h1" className={styles.title}>
