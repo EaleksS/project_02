@@ -7,13 +7,11 @@ import { Feedback } from "../components/Feedback/Feedback";
 import { Comments } from "../components/Comments/Comments";
 import { useParams } from "react-router-dom";
 import { useProduct } from "../store/products.store";
-import { NotFound } from "./NotFound";
 
 export const Products: FC = (): JSX.Element => {
   const { id } = useParams();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const [notFound, setNotFound] = useState<boolean>(false);
 
   const { getProductById, isError, setIsError } = useProduct();
 
@@ -27,11 +25,9 @@ export const Products: FC = (): JSX.Element => {
   }, [id]);
 
   useEffect(() => {
-    if (isError) setNotFound(true);
+    if (isError) navigate('/not-found')
     setIsError(false);
   }, [isError]);
-
-  if (notFound) return <NotFound />;
 
   return (
     <Layout>
