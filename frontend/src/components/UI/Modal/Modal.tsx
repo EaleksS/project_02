@@ -6,6 +6,8 @@ import { useUser } from "../../../store/user.store";
 import { useBasket } from "../../../store/basket.store";
 import { CardBasket } from "../../CardBasket/CardBasket";
 import { useNavigate } from "react-router-dom";
+import { AiFillCloseCircle } from "react-icons/ai";
+import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 
 export const Modal: FC = (): JSX.Element => {
   const { isActive, setIsActive } = useBasket();
@@ -34,6 +36,16 @@ export const Modal: FC = (): JSX.Element => {
     );
   });
 
+  const { width } = useWindowDimensions();
+
+  useEffect(() => {
+    if (width < 700 && isActive) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isActive]);
+
   return (
     <div
       className={`${styles.modal} ${styles.basket} ${
@@ -41,21 +53,22 @@ export const Modal: FC = (): JSX.Element => {
       }`}
       onClick={(e) => {
         e.stopPropagation();
+        e.stopPropagation();
       }}
     >
+      <div
+        className={styles.close}
+        onClick={() => setIsActive && setIsActive(false)}
+      >
+        <AiFillCloseCircle />
+      </div>
       <div className={styles.content}>
         {profile?.basket.length ? (
           profile.basket
             .map((product) => <CardBasket key={product._id} {...product} />)
             .reverse()
         ) : (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
+          <div className={styles.basket_null}>
             <img src="/ic2.svg" alt="logo" />
             <Text type="h2">Ваша корзина пуста</Text>
           </div>
@@ -65,7 +78,12 @@ export const Modal: FC = (): JSX.Element => {
         <div className={styles.count}>
           Сумма заказа: <b>{price} ₽ </b>
         </div>
-        <div onClick={() => navigate("/catalog")}>
+        <div
+          onClick={() => {
+            navigate("/catalog");
+            setIsActive && setIsActive(false);
+          }}
+        >
           <Button type="active" className={styles.btn}>
             {profile?.basket.length ? "Оформить заказ" : "В каталог"}
           </Button>

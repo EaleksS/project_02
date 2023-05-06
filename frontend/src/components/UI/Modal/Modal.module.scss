@@ -13,6 +13,17 @@
   transition: all 0.2s ease-in-out;
 
   // max-height: 80vh;
+
+  @media (max-width: 700px) {
+    left: 0;
+    right: 0;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+
+    transform: translateY(-100vh);
+    border-radius: 0;
+  }
 }
 
 .modal.active {
@@ -21,12 +32,46 @@
 }
 
 .basket {
+  @media (max-width: 700px) {
+    width: 100%;
+  }
+
+  .close {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 30px;
+    color: #e07153;
+
+    @media (max-width: 700px) {
+      display: block;
+    }
+  }
+
   .content {
     padding: 20px;
     margin-bottom: 100px;
     max-height: calc(80vh - 100px);
     overflow: auto;
-    border-bottom: 1px solid #e2e1e1;
+
+    @media (max-width: 700px) {
+      max-height: calc(100vh - 150px);
+    }
+
+    .basket_null {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      // transform: translateY(calc(50vh - 100px));
+
+      @media (max-width: 700px) {
+        max-height: calc(100vh - 150px);
+        transform: translateY(calc(50vh - 100px)) translateX(calc(50vw - 122px));
+        position: absolute;
+      }
+    }
 
     &::-webkit-scrollbar {
       position: absolute;
@@ -65,13 +110,22 @@
     right: 20px;
     left: 20px;
     bottom: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e1e1;
+
+    @media (max-width: 700px) {
+      flex-direction: column;
+      width: 100%;
+      left: 0;
+      right: 0;
+    }
 
     .count {
       font-size: 20px;
     }
 
     .btn {
-      width: 216px;
+      // width: 216px;
       font-size: 16px;
     }
   }

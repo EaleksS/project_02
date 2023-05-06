@@ -31,12 +31,12 @@ export const useBasket = create(
     },
     getAddInBasket: (id, product) => {
       Basket.getAddInBasket(id, product)
-        .then(() => toast("Добавлен"))
+        .then(() => console.log("Добавлен"))
         .catch((err) => console.log(err));
     },
     getDeleteInBasket: (id, idProduct) => {
       Basket.getDeleteInBasket(id, idProduct)
-        .then(() => toast("Удален"))
+        .then(() => console.log("Удален"))
         .catch((err) => console.log(err));
     },
   }))

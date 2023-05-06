@@ -42,9 +42,9 @@ export const CardBasket: FC<IProduct> = (props): JSX.Element => {
         <img src={props.imageUrl} alt={props.name} />
         <div>
           <Text type="h2" className={styles.h2}>
-            {props.name.length < 12
-              ? props.name
-              : `${props.name.slice(0, -8)}...`}
+            {props.description.length < 12
+              ? props.description
+              : `${props.description.slice(0, 12)}...`}
           </Text>
           <div className={styles.product_info}>
             <Text type="h3" className={styles.h3}>
