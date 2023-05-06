@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 import "./styles.scss";
 
@@ -16,6 +17,7 @@ import { FC, useEffect, useState } from "react";
 import { HiArrowLongLeft, HiArrowLongRight } from "react-icons/hi2";
 import { Card } from "../Card/Card";
 import { useProduct } from "../../store/products.store";
+import { useWindowDimensions } from "../../hooks/useWindowDimensions";
 
 SwiperCore.use([Navigation]);
 
@@ -24,7 +26,6 @@ interface Props {
 }
 
 export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
-
   const [swiper, setSwiper] = useState<SwiperCore>();
   const [swiperCards, setSwiperCards] = useState<SwiperCore>();
 
@@ -63,15 +64,18 @@ export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
     }
   }, []);
 
+  const { width } = useWindowDimensions();
+
   switch (type) {
     case "cards":
       return (
         <div className="slider_container">
           <Swiper
             onSwiper={(s) => setSwiperCards(s)}
-            slidesPerView={3}
+            slidesPerView={width < 1200 ? (width < 700 ? 1 : 2) : 3}
             spaceBetween={30}
             modules={[Pagination]}
+            // pagination={width < 900 ? true : false}
             onSlideChange={() => isActiceCards()}
             style={{ padding: "10px" }}
           >
@@ -108,9 +112,10 @@ export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
         <div className="slider_container">
           <Swiper
             onSwiper={(s) => setSwiperCards(s)}
-            slidesPerView={3}
+            slidesPerView={width < 1200 ? (width < 700 ? 1 : 2) : 3}
             spaceBetween={30}
             modules={[Pagination]}
+            // pagination={width < 900 ? true : false}
             onSlideChange={() => isActiceCards()}
             style={{ padding: "10px" }}
           >
@@ -150,6 +155,8 @@ export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
           <Swiper
             onSwiper={(s) => setSwiper(s)}
             className="mySwiper"
+            pagination={width < 900 ? true : false}
+            modules={[Pagination]}
             onSlideChange={() => isActice()}
           >
             <SwiperSlide>

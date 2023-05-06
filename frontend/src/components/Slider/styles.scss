@@ -19,12 +19,17 @@ body {
 .swiper {
   width: 100%;
   height: 100%;
+
+  @media (max-width: 500px) {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
 }
 
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
+  background: transparent;
 
   /* Center slide text vertically */
   display: flex;
@@ -58,6 +63,15 @@ body {
   color: #c95c3f;
   cursor: pointer;
 
+  @media (max-width: 1200px) {
+    height: 70px;
+    width: 70px;
+  }
+
+  @media (max-width: 900px) {
+    display: none;
+  }
+
   &:active {
     transform: scale(0.95);
   }
@@ -78,10 +92,18 @@ body {
 
 .prev {
   left: -50px;
+
+  @media (max-width: 1200px) {
+    left: -35px;
+  }
 }
 
 .next {
   right: -50px;
+
+  @media (max-width: 1200px) {
+    right: -35px;
+  }
 }
 
 .slider_container {
@@ -89,11 +111,23 @@ body {
   user-select: none;
   margin-top: 48px;
 
+  @media (max-width: 1200px) {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
 
+  @media (max-width: 900px) {
+    margin: 0;
+    margin-top: 20px;
+  }
 }
 
 .mySwiper {
   height: 424px;
+
+  @media (max-width: 1200px) {
+    height: auto;
+  }
 }
 
 .more {
@@ -110,6 +144,10 @@ body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+
+  @media (max-width: 1200px) {
+    display: none;
+  }
 
   @media (min-width: 700px) {
     transition: all 0.2s ease;

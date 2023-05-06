@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import styles from "./Header.module.scss";
 import { FaPhoneAlt } from "react-icons/fa";
 import { RiShoppingBasketFill, RiUserFill } from "react-icons/ri";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { Text } from "../UI/Text/Text";
 import { Modal } from "../UI/Modal/Modal";
 import { ModalAuth } from "../UI/ModalAuth/ModalAuth";
@@ -40,6 +41,9 @@ export const Header: FC = (): JSX.Element => {
         </div>
         <div style={{ width: "100%" }}>
           <nav className={styles.top}>
+            <div className={styles.burger_menu}>
+              <GiHamburgerMenu />
+            </div>
             <ul className={styles.list}>
               <li>
                 <Text>О нас</Text>

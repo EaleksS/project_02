@@ -43,6 +43,9 @@ export const Card: FC<IProduct> = (props): JSX.Element => {
       className={styles.card}
       onClick={() => navigate(`/products/${props._id}`)}
     >
+      {props.discount !== 0 && (
+        <div className={styles.discount}>-{props.discount}%</div>
+      )}
       <div className={styles.img}>
         <img src={props.imageUrl} alt="img" width={"100%"} />
       </div>
