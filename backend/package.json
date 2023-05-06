@@ -7,6 +7,9 @@
     "name": "Ernest",
     "url": "localhost:3000"
   },
+  "engines": {
+    "node": ">=14 <15"
+  },
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
