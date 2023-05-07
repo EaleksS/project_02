@@ -20,6 +20,9 @@
     min-height: 520px;
   }
 
+  @media (max-width: 700px) {
+    min-height: 550px;
+  }
 
   .discount {
     position: absolute;
@@ -125,6 +128,7 @@
 
       .btn {
         width: 200px;
+        padding: 0;
 
         @media (max-width: 900px) {
           width: 150px;
