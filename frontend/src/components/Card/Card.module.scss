@@ -40,6 +40,21 @@
     }
   }
 
+  .new {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    height: 50px;
+    width: 50px;
+    background: #a1dcdc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 16px;
+  }
+
   .img {
     display: flex;
     justify-content: center;

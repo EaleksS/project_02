@@ -9,7 +9,11 @@ import { useBasket } from "../../store/basket.store";
 import { useUser } from "../../store/user.store";
 import { useAuth } from "../../store/auth.store";
 
-export const Card: FC<IProduct> = (props): JSX.Element => {
+interface Props extends IProduct {
+  new?: boolean;
+}
+
+export const Card: FC<Props> = (props): JSX.Element => {
   const { getAddInBasket } = useBasket();
   const { profile, addInBasket } = useUser();
   const { user } = useAuth();
@@ -46,6 +50,7 @@ export const Card: FC<IProduct> = (props): JSX.Element => {
       {props.discount !== 0 && (
         <div className={styles.discount}>-{props.discount}%</div>
       )}
+      {props.new && <div className={styles.new}>NEW</div>}
       <div className={styles.img}>
         <img src={props.imageUrl} alt="img" width={"100%"} />
       </div>

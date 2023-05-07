@@ -12,6 +12,7 @@ import "./styles.scss";
 import SwiperCore, {
   Navigation,
   Pagination,
+  Autoplay,
 } from "../../../node_modules/swiper";
 import { FC, useEffect, useState } from "react";
 import { HiArrowLongLeft, HiArrowLongRight } from "react-icons/hi2";
@@ -74,16 +75,17 @@ export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
             onSwiper={(s) => setSwiperCards(s)}
             slidesPerView={width < 1200 ? (width < 700 ? 1 : 2) : 3}
             spaceBetween={30}
-            modules={[Pagination]}
-            // pagination={width < 900 ? true : false}
+            modules={[Pagination, Autoplay]}
+            autoplay={true}
+            pagination={width < 900 ? true : false}
             onSlideChange={() => isActiceCards()}
             style={{ padding: "10px" }}
           >
             {products &&
-              products.map((product) => {
+              products.slice(0, 8).map((product) => {
                 return (
                   <SwiperSlide key={product._id}>
-                    <Card {...product} />
+                    <Card {...product} new={true} />
                   </SwiperSlide>
                 );
               })}
@@ -114,8 +116,9 @@ export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
             onSwiper={(s) => setSwiperCards(s)}
             slidesPerView={width < 1200 ? (width < 700 ? 1 : 2) : 3}
             spaceBetween={30}
-            modules={[Pagination]}
-            // pagination={width < 900 ? true : false}
+            modules={[Pagination, Autoplay]}
+            autoplay={true}
+            pagination={width < 900 ? true : false}
             onSlideChange={() => isActiceCards()}
             style={{ padding: "10px" }}
           >
@@ -156,7 +159,8 @@ export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
             onSwiper={(s) => setSwiper(s)}
             className="mySwiper"
             pagination={width < 900 ? true : false}
-            modules={[Pagination]}
+            modules={[Pagination, Autoplay]}
+            autoplay={true}
             onSlideChange={() => isActice()}
           >
             <SwiperSlide>

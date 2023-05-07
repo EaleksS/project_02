@@ -46,6 +46,15 @@ body {
   object-fit: cover;
 }
 
+.swiper-pagination {
+  position: sticky !important;
+  transform: translateY(10px);
+}
+
+.swiper-pagination-bullet-active {
+  background: #e07153 !important;
+}
+
 .prev,
 .next {
   position: absolute;
