@@ -5,6 +5,19 @@
   justify-content: center;
   padding-top: 100px;
 
+  .not_found {
+    @media (max-width: 900px) {
+      img {
+        width: 500px;
+      }
+    }
+    @media (max-width: 500px) {
+      img {
+        width: 300px;
+      }
+    }
+  }
+
   .content {
     text-align: center;
 
