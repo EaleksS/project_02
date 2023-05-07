@@ -5,6 +5,16 @@
   gap: 80px;
   align-items: center;
 
+  @media (max-width: 1200px) {
+    display: block;
+    padding: 0 100px;
+  }
+
+  @media (max-width: 900px) {
+    display: block;
+    padding: 0 20px;
+  }
+
   .slider {
     display: flex;
     align-items: center;
@@ -19,6 +29,10 @@
       font-size: 40px;
       font-weight: 600;
       transform: translateY(-15px);
+
+      @media (max-width: 1200px) {
+        margin-top: 30px;
+      }
     }
 
     .infoProduct {
@@ -54,6 +68,10 @@
       gap: 10px;
       align-items: center;
 
+      @media (max-width: 500px) {
+        gap: 5px;
+      }
+
       .icon {
         font-size: 35px;
         color: #e07153;
@@ -78,6 +96,12 @@
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
+
+      @media (max-width: 900px) {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 20px;
+      }
 
       .price {
         position: relative;
@@ -127,6 +151,10 @@
       .btn {
         height: 52px;
         width: 250px;
+
+        @media (max-width: 900px) {
+          margin-top: 30px;
+        }
       }
     }
   }
