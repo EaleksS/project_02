@@ -32,8 +32,11 @@
 }
 
 .basket {
+  max-height: 80vh;
+
   @media (max-width: 700px) {
     width: 100%;
+    max-height: 100vh;
   }
 
   .close {
@@ -52,11 +55,12 @@
   .content {
     padding: 20px;
     margin-bottom: 100px;
-    max-height: calc(80vh - 100px);
+    max-height: calc(80vh - 120px);
+
     overflow: auto;
 
     @media (max-width: 700px) {
-      max-height: calc(100% - 180px);
+      max-height: calc(100% - 140px);
     }
 
     .basket_null {
@@ -109,16 +113,16 @@
     position: absolute;
     right: 20px;
     left: 20px;
-    bottom: 20px;
-    padding-top: 20px;
+    bottom: 0;
     border-top: 1px solid #e2e1e1;
+    height: 80px;
 
     @media (max-width: 700px) {
       flex-direction: column;
       width: 100%;
       left: 0;
       right: 0;
-      height: 100px;
+      bottom: 20px;
     }
 
     .count {
