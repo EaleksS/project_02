@@ -32,10 +32,11 @@ export const BurgerMenu: FC<Props> = ({
       >
         <AiFillCloseCircle />
       </div>
-      <div className={styles.logo} onClick={() => navigate("/")}>
-        <img src="/logo.svg" alt="logo" />
-      </div>
+
       <div className={styles.content}>
+        <div className={styles.logo} onClick={() => navigate("/")}>
+          <img src="/logo.svg" alt="logo" />
+        </div>
         <ul className={styles.list}>
           <li>
             <Text>О нас</Text>
