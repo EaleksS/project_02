@@ -10,7 +10,9 @@
 
   @media (max-width: 500px) {
     grid-template-columns: 1fr;
-    transform: translateX(calc(50% - 200px));
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 20px;
   }
 
   @media (max-width: 400px) {
