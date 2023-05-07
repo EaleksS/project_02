@@ -11,9 +11,11 @@ import { useAuth } from "../../store/auth.store";
 import { useUser } from "../../store/user.store";
 import { useBasket } from "../../store/basket.store";
 import { useStore } from "../Category/store";
+import { BurgerMenu } from "../BurgerMenu/BurgerMenu";
 
 export const Header: FC = (): JSX.Element => {
   const [isActiveAuth, setIsActiveAuth] = useState(false);
+  const [isActiveMenu, setIsActiveMenu] = useState(false);
 
   const { user, getLogout } = useAuth();
   const { setIsActive } = useBasket();
@@ -41,9 +43,18 @@ export const Header: FC = (): JSX.Element => {
         </div>
         <div style={{ width: "100%" }}>
           <nav className={styles.top}>
-            <div className={styles.burger_menu}>
+            <div
+              className={styles.burger_menu}
+              onClick={() => setIsActiveMenu(true)}
+            >
               <GiHamburgerMenu />
             </div>
+            {/* Burger Menu */}
+            <BurgerMenu
+              isActiveMenu={isActiveMenu}
+              setIsActiveMenu={setIsActiveMenu}
+            />
+            {/* /Burger Menu */}
             <ul className={styles.list}>
               <li>
                 <Text>О нас</Text>
