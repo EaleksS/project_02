@@ -71,9 +71,9 @@
       top: 15%;
       width: 336px;
       height: 419px;
-      
+      max-width: 100%;
 
-      @media (max-width: 500px) {
+      @media (max-width: 1200px) {
         display: none;
       }
     }

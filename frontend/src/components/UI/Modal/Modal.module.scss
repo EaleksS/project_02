@@ -56,7 +56,7 @@
     overflow: auto;
 
     @media (max-width: 700px) {
-      max-height: calc(100vh - 150px);
+      max-height: calc(100% - 180px);
     }
 
     .basket_null {
@@ -118,6 +118,7 @@
       width: 100%;
       left: 0;
       right: 0;
+      height: 100px;
     }
 
     .count {

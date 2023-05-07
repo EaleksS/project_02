@@ -12,4 +12,8 @@
     grid-template-columns: 1fr;
     transform: translateX(calc(50% - 200px));
   }
+
+  @media (max-width: 400px) {
+    transform: none;
+  }
 }
