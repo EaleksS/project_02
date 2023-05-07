@@ -41,8 +41,11 @@ export const Modal: FC = (): JSX.Element => {
   useEffect(() => {
     if (width < 700 && isActive) {
       document.body.style.overflow = "hidden";
+      document.body.style.overflowX = "hidden";
+
     } else {
       document.body.style.overflow = "auto";
+      document.body.style.overflowX = "hidden";
     }
   }, [isActive]);
 
