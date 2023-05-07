@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { Slider } from "../Slider/Slider";
 import { Text } from "../UI/Text/Text";
 import styles from "./Cards.module.scss";
