@@ -51,6 +51,12 @@
       margin-left: 40px;
       cursor: pointer;
       user-select: none;
+
+      transition: all 0.2s ease-in-out;
+
+      &.active {
+        transform: rotate(90deg);
+      }
     }
 
     @media (max-width: 1200px) {

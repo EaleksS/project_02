@@ -44,7 +44,9 @@ export const Header: FC = (): JSX.Element => {
         <div style={{ width: "100%" }}>
           <nav className={styles.top}>
             <div
-              className={styles.burger_menu}
+              className={`${styles.burger_menu} ${
+                isActiveMenu && styles.active
+              }`}
               onClick={() => setIsActiveMenu(true)}
             >
               <GiHamburgerMenu />
