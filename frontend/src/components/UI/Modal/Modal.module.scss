@@ -55,12 +55,12 @@
     padding: 0 20px;
     margin-bottom: 100px;
     max-height: calc(80vh - 120px);
-    padding-bottom: 40px;
 
     overflow: auto;
 
     @media (max-width: 700px) {
-      max-height: 85vh;
+      max-height: calc(85vh);
+      margin-bottom: 40px;
     }
 
     .basket_null {
