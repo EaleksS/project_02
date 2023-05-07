@@ -32,7 +32,7 @@ export const Up: FC = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (scroll > height) return setActive(true);
+    if (scroll > height / 2) return setActive(true);
 
     setActive(false);
   }, [scroll]);
