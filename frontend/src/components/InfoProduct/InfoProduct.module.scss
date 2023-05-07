@@ -112,6 +112,10 @@
         transform: translateY(10px);
         width: 110px;
 
+        @media (max-width: 900px) {
+          width: 100%;
+        }
+
         span {
           position: absolute;
           top: -10px;
