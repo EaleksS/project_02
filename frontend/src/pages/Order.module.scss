@@ -4,6 +4,12 @@
   padding-top: 50px;
 }
 
+h1 {
+  @media (max-width: 800px) {
+    text-align: center;
+  }
+}
+
 .content {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -24,31 +30,31 @@
     padding: 0 0;
   }
 
-//   .cards {
-//     @media (max-width: 1200px) {
-//       max-height: 600px;
-//       overflow: auto;
+  //   .cards {
+  //     @media (max-width: 1200px) {
+  //       max-height: 600px;
+  //       overflow: auto;
 
-//       &::-webkit-scrollbar {
-//         position: absolute;
-//         right: 0;
-//         top: 0;
-//         width: 5px;
-//         // background: #000;
-//       }
+  //       &::-webkit-scrollbar {
+  //         position: absolute;
+  //         right: 0;
+  //         top: 0;
+  //         width: 5px;
+  //         // background: #000;
+  //       }
 
-//       &::-webkit-scrollbar-thumb {
-//         background: rgba($color: #000000, $alpha: 0);
-//         border-radius: 50px;
-//       }
+  //       &::-webkit-scrollbar-thumb {
+  //         background: rgba($color: #000000, $alpha: 0);
+  //         border-radius: 50px;
+  //       }
 
-//       &:hover {
-//         &::-webkit-scrollbar-thumb {
-//           background: rgba($color: #000000, $alpha: 0.23);
-//         }
-//       }
-//     }
-//   }
+  //       &:hover {
+  //         &::-webkit-scrollbar-thumb {
+  //           background: rgba($color: #000000, $alpha: 0.23);
+  //         }
+  //       }
+  //     }
+  //   }
 
   .input {
     width: 100%;
@@ -119,6 +125,10 @@
         border-bottom: 2px solid #e2e1e1;
         padding: 20px 0;
 
+        @media (max-width: 800px) {
+          font-size: 16px;
+        }
+
         .price,
         .delivery {
           display: flex;
@@ -173,6 +183,10 @@
           justify-content: space-between;
           font-size: 24px;
           padding: 20px 20px;
+
+          @media (max-width: 800px) {
+            font-size: 18px;
+          }
         }
 
         textarea {

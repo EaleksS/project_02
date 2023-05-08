@@ -10,6 +10,14 @@ import { Button } from "../components/UI/Button/Button";
 export const Order: FC = (): JSX.Element => {
   const { profile } = useUser();
 
+  let price: number = 0;
+
+  profile?.basket.forEach((e) => {
+    price += Math.round(
+      (e.price * (e.quantity ? e.quantity : 1) * (100 - e.discount)) / 100
+    );
+  });
+
   return (
     <Layout>
       <div className={styles.container}>
@@ -91,7 +99,7 @@ export const Order: FC = (): JSX.Element => {
               <div className={styles.order_price}>
                 <div className={styles.price}>
                   <span>Сумма заказа</span>
-                  <span>200 ₽</span>
+                  <span>{price} ₽</span>
                 </div>
                 <div className={styles.delivery}>
                   <span>Стоимость доставки</span>
@@ -107,7 +115,7 @@ export const Order: FC = (): JSX.Element => {
               <div className={styles.total_order_amount}>
                 <div className={styles.price}>
                   <span>Итоговая сумма заказа</span>
-                  <span>200 ₽</span>
+                  <span>{price} ₽</span>
                 </div>
                 <textarea placeholder="Комментарий к заказу"></textarea>
               </div>
