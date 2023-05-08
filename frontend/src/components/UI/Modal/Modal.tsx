@@ -18,6 +18,17 @@ export const Modal: FC = (): JSX.Element => {
     setIsActive && setIsActive(false);
   };
 
+  const handleClick = () => {
+    if (!profile?.basket.length) {
+      navigate("/catalog");
+      setIsActive && setIsActive(false);
+      return;
+    }
+
+    navigate("/order");
+    setIsActive && setIsActive(false);
+  };
+
   useEffect(() => {
     window.addEventListener("click", handleClickRemove);
 
@@ -78,12 +89,7 @@ export const Modal: FC = (): JSX.Element => {
         <div className={styles.count}>
           Сумма заказа: <b>{price} ₽ </b>
         </div>
-        <div
-          onClick={() => {
-            navigate("/catalog");
-            setIsActive && setIsActive(false);
-          }}
-        >
+        <div onClick={() => handleClick()}>
           <Button type="active" className={styles.btn}>
             {profile?.basket.length ? "Оформить заказ" : "В каталог"}
           </Button>

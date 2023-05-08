@@ -6,6 +6,7 @@ import { useAuth } from "./store/auth.store";
 import { useEffect } from "react";
 import { useUser } from "./store/user.store";
 import { Catalog } from "./pages/Catalog";
+import { Order } from "./pages/Order";
 
 function App() {
   const { getRefresh } = useAuth();
@@ -29,6 +30,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Main />} />
       <Route path="/catalog" element={<Catalog />} />
+      <Route path="/order" element={<Order />} />
       <Route path="/products/:id" element={<Products />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
