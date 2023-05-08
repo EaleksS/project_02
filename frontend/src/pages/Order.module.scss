@@ -16,17 +16,16 @@ h1 {
   gap: 25px;
 
   @media (max-width: 1200px) {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column-reverse;
     padding: 0 200px;
   }
 
   @media (max-width: 1000px) {
-    grid-template-columns: 1fr;
     padding: 0 100px;
   }
 
   @media (max-width: 800px) {
-    grid-template-columns: 1fr;
     padding: 0 0;
   }
 
