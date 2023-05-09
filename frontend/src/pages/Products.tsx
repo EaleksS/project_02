@@ -12,10 +12,11 @@ export const Products: FC = (): JSX.Element => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-
   const { getProductById, isError, setIsError } = useProduct();
 
   let changeComp = 0;
+
+  console.log(changeComp);
 
   useEffect(() => {
     if (changeComp === 0 && id) {
@@ -25,7 +26,7 @@ export const Products: FC = (): JSX.Element => {
   }, [id]);
 
   useEffect(() => {
-    if (isError) navigate('/not-found')
+    if (isError) navigate("/not-found");
     setIsError(false);
   }, [isError]);
 
