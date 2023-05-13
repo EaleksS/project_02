@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, memo, useEffect } from "react";
 import { Button } from "../UI/Button/Button";
 import { Text } from "../UI/Text/Text";
 import styles from "./Card.module.scss";
@@ -14,7 +14,7 @@ interface Props extends IProduct {
   new?: boolean;
 }
 
-export const Card: FC<Props> = (props): JSX.Element => {
+export const Card: FC<Props> = memo((props): JSX.Element => {
   const { getAddInBasket } = useBasket();
   const { profile, addInBasket } = useUser();
   const { user } = useAuth();
@@ -86,4 +86,4 @@ export const Card: FC<Props> = (props): JSX.Element => {
       </div>
     </div>
   );
-};
+});
