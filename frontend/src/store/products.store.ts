@@ -15,6 +15,7 @@ type useProduct = {
   products: null | IProduct[];
   getProducts: () => void;
   productById: null | IProduct;
+  isLoader: boolean;
   getProductById: (id: string) => void;
   getAddComment: (id: string, comment: ICreateComment) => void;
   getDeleteComment: (id: string, commentId: string) => void;
@@ -22,7 +23,7 @@ type useProduct = {
 
 export const useProduct = create(
   persist<useProduct>(
-    (set) => ({
+    (set, get) => ({
       isError: false,
       setIsError: (bool) => {
         set({ isError: bool });
@@ -34,10 +35,13 @@ export const useProduct = create(
           .catch((err) => console.log(err));
       },
       productById: null,
+      isLoader: false,
       getProductById: (id) => {
+        get().productById?._id !== id && set({ isLoader: true });
         Products.getProductById(id)
           .then((res) => set({ productById: res.data }))
-          .catch(() => set({ isError: true }));
+          .catch(() => set({ isError: true }))
+          .finally(() => set({ isLoader: false }));
       },
       getAddComment: (id, comment) => {
         Products.getAddComment(id, comment)

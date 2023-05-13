@@ -7,16 +7,16 @@ import { Feedback } from "../components/Feedback/Feedback";
 import { Comments } from "../components/Comments/Comments";
 import { useNavigate, useParams } from "react-router-dom";
 import { useProduct } from "../store/products.store";
+import { Loader } from "../components/UI/Loader/Loader";
 
 export const Products: FC = (): JSX.Element => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const { getProductById, isError, setIsError } = useProduct();
+  const { getProductById, isError, setIsError, isLoader } =
+    useProduct();
 
   let changeComp = 0;
-
-  console.log(changeComp);
 
   useEffect(() => {
     if (changeComp === 0 && id) {
@@ -39,6 +39,7 @@ export const Products: FC = (): JSX.Element => {
         <Feedback />
         <Comments />
       </div>
+      {isLoader && <Loader className={styles.loader} />}
     </Layout>
   );
 };

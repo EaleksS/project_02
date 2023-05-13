@@ -20,8 +20,6 @@ export const useBasket = create(
 
       if (bool === true) return set({ isActive: true });
 
-      console.log("as");
-
       set({ isActive: !get().isActive });
     },
     isError: false,

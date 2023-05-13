@@ -9,6 +9,7 @@ import { useProduct } from "../../store/products.store";
 import { useBasket } from "../../store/basket.store";
 import { useUser } from "../../store/user.store";
 import { useAuth } from "../../store/auth.store";
+import { useCalcDiscount } from "../../hooks/useCalcDiscount";
 
 export const InfoProduct: FC = (): JSX.Element => {
   const [count, setCount] = useState<number>(1);
@@ -23,6 +24,7 @@ export const InfoProduct: FC = (): JSX.Element => {
       return ++prev;
     });
   };
+
   const handleSubtraction = () => {
     setCount((prev) => {
       if (prev === 1) return prev;
@@ -30,12 +32,7 @@ export const InfoProduct: FC = (): JSX.Element => {
     });
   };
 
-  let newPrice =
-    productById &&
-    `${
-      Math.round((productById?.price * (100 - productById?.discount)) / 100) *
-      count
-    } ₽`;
+  const newPrice = productById && `${useCalcDiscount(productById) * count} ₽`;
 
   const isSameProduct = profile?.basket.find((e) => e._id === productById?._id);
 

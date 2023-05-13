@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useBasket } from "../../store/basket.store";
 import { useUser } from "../../store/user.store";
 import { useAuth } from "../../store/auth.store";
+import { useCalcDiscount } from "../../hooks/useCalcDiscount";
 
 export const CardBasket: FC<IProduct> = (props): JSX.Element => {
   const navigate = useNavigate();
@@ -26,12 +27,7 @@ export const CardBasket: FC<IProduct> = (props): JSX.Element => {
     }
   };
 
-  const price = Math.round(
-    (props.price *
-      (props.quantity ? props.quantity : 1) *
-      (100 - props.discount)) /
-      100
-  );
+  const price = useCalcDiscount(props);
 
   return (
     <div className={styles.card}>

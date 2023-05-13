@@ -8,6 +8,7 @@ import { CardBasket } from "../../CardBasket/CardBasket";
 import { useNavigate } from "react-router-dom";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
+import { useCalcDiscount } from "../../../hooks/useCalcDiscount";
 
 export const Modal: FC = (): JSX.Element => {
   const { isActive, setIsActive } = useBasket();
@@ -39,13 +40,10 @@ export const Modal: FC = (): JSX.Element => {
 
   const { profile } = useUser();
 
-  let price: number = 0;
-
-  profile?.basket.forEach((e) => {
-    price += Math.round(
-      (e.price * (e.quantity ? e.quantity : 1) * (100 - e.discount)) / 100
-    );
-  });
+  const price = profile?.basket.reduce(
+    (accumulator, current) => accumulator + useCalcDiscount(current),
+    0
+  );
 
   const { width } = useWindowDimensions();
 
@@ -87,7 +85,7 @@ export const Modal: FC = (): JSX.Element => {
       </div>
       <div className={styles.buy}>
         <div className={styles.count}>
-          Сумма заказа: <b>{price} ₽ </b>
+          Сумма заказа: <b>{price ? price : 0} ₽ </b>
         </div>
         <div onClick={() => handleClick()}>
           <Button type="active" className={styles.btn}>

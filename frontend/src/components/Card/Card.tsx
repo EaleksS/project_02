@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useBasket } from "../../store/basket.store";
 import { useUser } from "../../store/user.store";
 import { useAuth } from "../../store/auth.store";
+import { useCalcDiscount } from "../../hooks/useCalcDiscount";
 
 interface Props extends IProduct {
   new?: boolean;
@@ -18,9 +19,7 @@ export const Card: FC<Props> = (props): JSX.Element => {
   const { profile, addInBasket } = useUser();
   const { user } = useAuth();
 
-  let newPrice = `${Math.round(
-    (props.price * (100 - props.discount)) / 100
-  )} ₽`;
+  let newPrice = `${useCalcDiscount(props)} ₽`;
 
   const navigate = useNavigate();
 

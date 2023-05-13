@@ -1,39 +1,29 @@
-import { FC, useState } from "react";
+import { FC, memo, useState } from "react";
 import styles from "./Header.module.scss";
 import { FaPhoneAlt } from "react-icons/fa";
-import { RiShoppingBasketFill, RiUserFill } from "react-icons/ri";
+import { RiUserFill } from "react-icons/ri";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Text } from "../UI/Text/Text";
 import { Modal } from "../UI/Modal/Modal";
 import { ModalAuth } from "../UI/ModalAuth/ModalAuth";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../store/auth.store";
-import { useUser } from "../../store/user.store";
-import { useBasket } from "../../store/basket.store";
 import { useStore } from "../Category/store";
 import { BurgerMenu } from "../BurgerMenu/BurgerMenu";
+import { Basket } from "./Basket/Basket";
 
-export const Header: FC = (): JSX.Element => {
+export const Header: FC = memo((): JSX.Element => {
   const [isActiveAuth, setIsActiveAuth] = useState(false);
   const [isActiveMenu, setIsActiveMenu] = useState(false);
 
   const { user, getLogout } = useAuth();
-  const { setIsActive } = useBasket();
 
   // Стейт категория
   const { setSelectType } = useStore();
 
   const navigate = useNavigate();
 
-  const { profile } = useUser();
-
-  let price: number = 0;
-
-  profile?.basket.forEach((e) => {
-    price += Math.round(
-      (e.price * (e?.quantity ? e?.quantity : 1) * (100 - e.discount)) / 100
-    );
-  });
+  console.log("render header");
 
   return (
     <header className={styles.header}>
@@ -81,19 +71,7 @@ export const Header: FC = (): JSX.Element => {
               </span>
               <span className={styles.datetime}>c 10:00 до 23:00</span>
             </div>
-            <div
-              className={styles.basket}
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsActive();
-              }}
-            >
-              <div className={styles.count}>{price} ₽</div>
-              <div className={styles.basket_icon}>
-                <RiShoppingBasketFill />
-                <span>{profile ? profile.basket.length : 0}</span>
-              </div>
-            </div>
+            <Basket />
             {user ? (
               <div onClick={() => getLogout()}>выйти</div>
             ) : (
@@ -170,4 +148,4 @@ export const Header: FC = (): JSX.Element => {
       </div>
     </header>
   );
-};
+});

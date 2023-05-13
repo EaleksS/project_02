@@ -6,6 +6,7 @@ import { CardBasket } from "../components/CardBasket/CardBasket";
 import { useUser } from "../store/user.store";
 import { MdOutlineDeliveryDining } from "react-icons/md";
 import { Button } from "../components/UI/Button/Button";
+import { useCalcDiscount } from "../hooks/useCalcDiscount";
 
 export const Order: FC = (): JSX.Element => {
   const { profile } = useUser();
@@ -13,9 +14,7 @@ export const Order: FC = (): JSX.Element => {
   let price: number = 0;
 
   profile?.basket.forEach((e) => {
-    price += Math.round(
-      (e.price * (e.quantity ? e.quantity : 1) * (100 - e.discount)) / 100
-    );
+    price += useCalcDiscount(e);
   });
 
   return (
