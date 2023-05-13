@@ -22,7 +22,6 @@ export const BurgerMenu: FC<Props> = memo(
 
     const navigate = useNavigate();
 
-    console.log("render BurgerMenu");
 
     return (
       <div className={`${styles.burger_menu} ${isActiveMenu && styles.active}`}>

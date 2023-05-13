@@ -1,4 +1,4 @@
-import { FC, memo } from "react";
+import { FC, memo, useMemo } from "react";
 import { useBasket } from "../../../store/basket.store";
 import styles from "./Basket.module.scss";
 import { RiShoppingBasketFill } from "react-icons/ri";
@@ -10,10 +10,12 @@ export const Basket: FC = memo((): JSX.Element => {
 
   const { profile } = useUser();
 
-  const price = profile?.basket.reduce(
-    (accumulator, current) => accumulator + useCalcDiscount(current),
-    0
-  );
+  const price = useMemo(() => {
+    return profile?.basket.reduce(
+      (accumulator, current) => accumulator + useCalcDiscount(current),
+      0
+    );
+  }, [profile?.basket]);
 
   return (
     <div

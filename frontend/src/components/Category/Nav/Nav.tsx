@@ -1,11 +1,13 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import styles from "./Nav.module.scss";
 import { Button } from "../../UI/Button/Button";
 import { Text } from "../../UI/Text/Text";
 import { useStore } from "../store";
 
-export const Nav: FC = (): JSX.Element => {
+export const Nav: FC = memo((): JSX.Element => {
   const { selectType, setSelectType } = useStore();
+
+  console.log("render Nav");
 
   return (
     <div className={styles.nav}>
@@ -77,4 +79,4 @@ export const Nav: FC = (): JSX.Element => {
       </Button> */}
     </div>
   );
-};
+});

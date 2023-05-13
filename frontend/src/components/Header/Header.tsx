@@ -13,8 +13,8 @@ import { BurgerMenu } from "../BurgerMenu/BurgerMenu";
 import { Basket } from "./Basket/Basket";
 
 export const Header: FC = memo((): JSX.Element => {
-  const [isActiveAuth, setIsActiveAuth] = useState(false);
-  const [isActiveMenu, setIsActiveMenu] = useState(false);
+  const [isActiveAuth, setIsActiveAuth] = useState<boolean>(false);
+  const [isActiveMenu, setIsActiveMenu] = useState<boolean>(false);
 
   const { user, getLogout } = useAuth();
 
@@ -22,8 +22,6 @@ export const Header: FC = memo((): JSX.Element => {
   const { setSelectType } = useStore();
 
   const navigate = useNavigate();
-
-  console.log("render header");
 
   return (
     <header className={styles.header}>
