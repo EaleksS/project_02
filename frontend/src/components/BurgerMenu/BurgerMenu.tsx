@@ -22,7 +22,6 @@ export const BurgerMenu: FC<Props> = memo(
 
     const navigate = useNavigate();
 
-
     return (
       <div className={`${styles.burger_menu} ${isActiveMenu && styles.active}`}>
         <div
@@ -49,14 +48,11 @@ export const BurgerMenu: FC<Props> = memo(
             <li>
               <Text>Бонусы</Text>
             </li>
-            <li>
-              <Text>Вакансии</Text>
-            </li>
           </ul>
           <div className={styles.tel}>
             <span>
               <FaPhoneAlt className={styles.icon} />
-              <a href=".#">+7 (495) 617-14-24</a>
+              <a href="tel:+74956171424">+7 (495) 617-14-24</a>
             </span>
             <span className={styles.datetime}>c 10:00 до 23:00</span>
           </div>
