@@ -13,6 +13,30 @@
   transition: 0.5s;
   z-index: 3;
 
+  .close {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 35px;
+    color: #e07153;
+    background: #fff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    height: 40px;
+    width: 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+
+    @media (max-width: 700px) {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 700px) {
+    background-color: #fff;
+  }
+
   .content {
     padding: 20px 50px;
     border-radius: 12px;
@@ -20,6 +44,15 @@
     width: 500px;
     transform: scale(0.5);
     transition: 0.4s all;
+
+    @media (max-width: 500px) {
+      width: 100vw;
+      padding: 0 20px;
+    }
+
+    @media (max-width: 350px) {
+      padding: 0 10px;
+    }
 
     .title {
       text-align: center;
@@ -58,6 +91,10 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 10px;
+
+        @media (max-width: 500px) {
+          grid-template-columns: 1fr;
+        }
 
         div {
           display: flex;

@@ -1,10 +1,12 @@
-import { Dispatch, FC, SetStateAction, useState } from "react";
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 import styles from "./ModalComment.module.scss";
 import { Button } from "../Button/Button";
 import { Text } from "../Text/Text";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { BsStar, BsStarFill } from "react-icons/bs";
 import { useProduct } from "../../../store/products.store";
+import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 interface Props {
   isActive: boolean;
@@ -42,8 +44,20 @@ export const ModalComment: FC<Props> = ({
         rating: rating,
       });
 
+    setIsActive && setIsActive(false);
+
     reset();
   };
+
+  const { width } = useWindowDimensions();
+
+  useEffect(() => {
+    if (width < 700 && isActive) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflowY = "auto";
+    }
+  }, [isActive]);
 
   return (
     <div
@@ -53,6 +67,12 @@ export const ModalComment: FC<Props> = ({
         reset();
       }}
     >
+      <div
+        className={styles.close}
+        onClick={() => setIsActive && setIsActive(false)}
+      >
+        <AiFillCloseCircle />
+      </div>
       <div
         className={`${styles.content} ${isActive && styles.activeContent}`}
         onClick={(e) => e.stopPropagation()}
@@ -84,7 +104,7 @@ export const ModalComment: FC<Props> = ({
               {...register("description", {
                 required: true,
               })}
-              placeholder="Напишите Ваш отзыв"
+              placeholder="Напишите Ваш отзыв *"
             />
             {errors.email && (
               <span className={styles.error}>Поле на заполнено</span>
@@ -110,7 +130,7 @@ export const ModalComment: FC<Props> = ({
               <div>
                 <input
                   {...register("name", { required: true })}
-                  placeholder="Ваше имя и фамилия"
+                  placeholder="Ваше имя и фамилия *"
                   type="text"
                 />
                 {errors.name && (
