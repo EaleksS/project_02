@@ -40,6 +40,15 @@
       li {
         margin: 0 20px;
         cursor: pointer;
+
+        p {
+          transition: all 0.2s;
+          @media (min-width: 800px) {
+            &:hover {
+              opacity: 0.5;
+            }
+          }
+        }
       }
     }
 
@@ -110,8 +119,6 @@
         opacity: 0.5;
       }
     }
-
-
 
     .user {
       height: 48px;
