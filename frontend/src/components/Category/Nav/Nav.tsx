@@ -7,8 +7,6 @@ import { useStore } from "../store";
 export const Nav: FC = memo((): JSX.Element => {
   const { selectType, setSelectType } = useStore();
 
-  console.log("render Nav");
-
   return (
     <div className={styles.nav}>
       <Button

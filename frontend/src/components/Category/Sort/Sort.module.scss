@@ -1,0 +1,23 @@
+.sort {
+  padding-top: 30px;
+  width: 300px;
+
+  .select {
+    font-size: 20px !important;
+
+    div:nth-child(3) {
+      border-color: #e2e1e1 !important;
+      box-shadow: none !important;
+
+      span {
+        background-color: transparent !important;
+      }
+    }
+
+    input {
+      height: 50px;
+      border-radius: 20px;
+      font-size: 30px;
+    }
+  }
+}

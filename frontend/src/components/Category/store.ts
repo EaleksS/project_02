@@ -12,6 +12,8 @@ type useStore = {
   setSelectType: (type: string) => void;
   active: number;
   setActive: (number: number) => void;
+  selectedOption: string;
+  setSelectedOption: (select: string) => void;
 };
 
 export const useStore = create(
@@ -36,6 +38,10 @@ export const useStore = create(
       active: 1,
       setActive: (number) => {
         set({ active: number });
+      },
+      selectedOption: "По умолчанию",
+      setSelectedOption: (select: string) => {
+        set({ selectedOption: select });
       },
     }),
     { name: "catalog" }

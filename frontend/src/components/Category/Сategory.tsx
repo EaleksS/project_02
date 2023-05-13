@@ -4,12 +4,14 @@ import { Text } from "../UI/Text/Text";
 import { Nav } from "./Nav/Nav";
 import { Items } from "./Items/Items";
 import { Pagination } from "./Pagination/Pagination";
+import { Sort } from "./Sort/Sort";
 
 export const Category: FC = (): JSX.Element => {
   const NavCall = useMemo(() => {
     return (
       <>
         <Nav />
+        <Sort />
         <Items />
         <Pagination />
       </>
