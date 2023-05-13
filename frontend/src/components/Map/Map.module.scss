@@ -1,13 +1,11 @@
-.sort {
-  padding-top: 30px;
-  width: 300px;
+.map {
+  height: 500px;
 
-  &::before {
-    content: "Сортировка";
-  }
-
-  .select {
-    font-size: 20px !important;
+  .GooglePlacesAutocomplete {
+    width: 500px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
 
     div:nth-child(3) {
       border-color: #e2e1e1 !important;

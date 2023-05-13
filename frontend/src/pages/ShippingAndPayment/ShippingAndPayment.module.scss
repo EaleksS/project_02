@@ -1,0 +1,42 @@
+.container {
+  max-width: 1224px;
+  margin: 0 auto;
+  padding-top: 20px;
+
+  h1 {
+    font-weight: 600;
+    font-size: 35px;
+  }
+
+  .zone_info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .zone_green,
+    .zone_yellow {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      h3 {
+        font-size: 26px;
+        font-weight: 600;
+      }
+
+      p {
+        font-size: 18px;
+      }
+    }
+
+    .zone_green {
+      h3 {
+        color: #7e9e1e;
+      }
+    }
+    .zone_yellow {
+      h3 {
+        color: #f1c400;
+      }
+    }
+  }
+}

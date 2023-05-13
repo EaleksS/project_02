@@ -6,7 +6,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { Text } from "../UI/Text/Text";
 import { Modal } from "../UI/Modal/Modal";
 import { ModalAuth } from "../UI/ModalAuth/ModalAuth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../store/auth.store";
 import { useStore } from "../Category/store";
 import { BurgerMenu } from "../BurgerMenu/BurgerMenu";
@@ -50,12 +50,14 @@ export const Header: FC = memo((): JSX.Element => {
                 <Text>О нас</Text>
               </li>
               <li>
-                <Text>Доставка и оплата</Text>
+                <Text>
+                  <Link to="/ship-and-pay">Доставка и оплата</Link>
+                </Text>
               </li>
               <li>
                 <Text>Контакты</Text>
               </li>
-              <li>
+              <li style={{textDecoration: "line-through"}}>
                 <Text>Бонусы</Text>
               </li>
             </ul>
