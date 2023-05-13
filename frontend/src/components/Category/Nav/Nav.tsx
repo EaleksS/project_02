@@ -65,8 +65,8 @@ export const Nav: FC = memo((): JSX.Element => {
       {/* <Button
         className={styles.btn}
         type="category"
-        onClick={() => setIsActive('sale')}
-        active={isActive === 'sale' ? true : false}
+        onClick={() => setSelectType('sale')}
+        active={selectType === 'sale' ? true : false}
       >
         <img
           src="./logofoot/sale.svg"

@@ -116,8 +116,7 @@ export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
             onSwiper={(s) => setSwiperCards(s)}
             slidesPerView={width < 1200 ? (width < 700 ? 1 : 2) : 3}
             spaceBetween={30}
-            modules={[Pagination, Autoplay]}
-            autoplay={true}
+            modules={[Pagination]}
             pagination={width < 900 ? true : false}
             onSlideChange={() => isActiceCards()}
             style={{ padding: "10px" }}
@@ -159,18 +158,17 @@ export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
             onSwiper={(s) => setSwiper(s)}
             className="mySwiper"
             pagination={width < 900 ? true : false}
-            modules={[Pagination, Autoplay]}
-            autoplay={true}
+            modules={[Pagination]}
             onSlideChange={() => isActice()}
           >
             <SwiperSlide>
               <img src="./banner.png" alt="banner" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src="./banner.png" alt="banner" />
+              <img src="./banner2.png" alt="banner" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src="./banner.png" alt="banner" />
+              <img src="./banner3.png" alt="banner" />
             </SwiperSlide>
           </Swiper>
           <div className="prev" onClick={() => swiper && swiper.slidePrev()}>
