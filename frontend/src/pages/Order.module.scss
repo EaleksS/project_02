@@ -97,6 +97,11 @@ h1 {
         width: 100%;
       }
 
+      .search {
+        flex-direction: column;
+        width: calc(100% - 30px);
+      }
+
       p {
         display: flex;
         align-items: center;

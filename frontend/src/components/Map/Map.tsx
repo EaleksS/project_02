@@ -1,9 +1,17 @@
 import { FC, useState } from "react";
 import styles from "./Map.module.scss";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
-import GooglePlacesAutocomplete from "react-google-places-autocomplete";
-import { SingleValue } from "react-select";
-import { Option } from "react-google-places-autocomplete/build/types";
+import {
+  GoogleMap,
+  useJsApiLoader,
+  StandaloneSearchBox,
+  MarkerF,
+} from "@react-google-maps/api";
+import { Loader } from "../UI/Loader/Loader";
+
+interface Location {
+  lat: number;
+  lng: number;
+}
 
 export const Map: FC = (): JSX.Element => {
   const { isLoaded, loadError } = useJsApiLoader({
@@ -12,55 +20,74 @@ export const Map: FC = (): JSX.Element => {
     libraries: ["places"],
   });
 
-  const [value, setValue] = useState<SingleValue<Option>>(null);
+  const [map, setMap] = useState<google.maps.Map | null>(null);
+  const [searchBox, setSearchBox] = useState<google.maps.places.SearchBox>();
+  const [center, setCenter] = useState<Location>({
+    lat: 62.02781,
+    lng: 129.73242,
+  });
+  const [value, setValue] = useState<string>("");
+  const [isBox, setIsBox] = useState<boolean>(false);
+
+  const onLoad = (map: google.maps.Map) => {
+    setMap(map);
+  };
+
+  const onUnmount = () => {
+    setMap(null);
+  };
+
+  const onSearchBoxLoad = (ref: google.maps.places.SearchBox) => {
+    setSearchBox(ref);
+  };
+
+  const onPlacesChanged = () => {
+    if (searchBox) {
+      const places = searchBox.getPlaces()!;
+      if (places.length === 0) {
+        console.log("No places found");
+        return;
+      }
+
+      console.log(places[0]);
+
+      if (places[0].formatted_address) {
+        setValue(places[0]?.formatted_address);
+        setIsBox(true);
+      }
+
+      setCenter({
+        lat: places[0]?.geometry?.location?.lat() ?? 62.02781,
+        lng: places[0]?.geometry?.location?.lng() ?? 129.73242,
+      });
+    }
+  };
 
   if (loadError) return <div>Error</div>;
-  if (!isLoaded) return <div>Loading...</div>;
-
-  console.log(value);
+  if (!isLoaded) return <Loader />;
 
   return (
     <div className={styles.map}>
       <GoogleMap
-        center={!value ? { lat: 62.0313273, lng: 129.6605012 } : value.value}
-        zoom={11}
+        center={center}
+        zoom={isBox ? 15 : 11}
         mapContainerStyle={{ height: "100%" }}
         options={{ disableDefaultUI: true }}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
       >
-        <div className={styles.GooglePlacesAutocomplete}>
-          <GooglePlacesAutocomplete
-            apiKey="AIzaSyAXgV7Xnqc6mVvOVbz8ljhMF1_BEjopOEA"
-            apiOptions={{ language: "sa", region: "sa" }}
-            autocompletionRequest={{
-              //   bounds: [
-              //     { lat: 62.17, lng: 129.57 },
-              //     { lat: 61.93, lng: 129.9 },
-              //   ],
-              location: { lat: 62.028, lng: 129.732 },
-              radius: 2000000, // set the radius (in meters) to limit the search results within Sakha Republic
-              types: ["geocode", "establishment"],
-              componentRestrictions: { country: "ru" },
-            }}
-            selectProps={{
-              required: true,
-              value,
-              onChange: setValue,
-
-              theme: (theme) => ({
-                ...theme,
-                borderRadius: 8,
-                colors: {
-                  ...theme.colors,
-                  primary25: "#e2e1e1",
-                  primary: "#E07153",
-                },
-              }),
-              placeholder: "Введите полный адрес",
-              noOptionsMessage: () => "Введите адрес",
-              loadingMessage: () => "загрузка",
-            }}
+        {isBox && <MarkerF position={center} />}
+        <StandaloneSearchBox
+          onLoad={onSearchBoxLoad}
+          onPlacesChanged={onPlacesChanged}
+        >
+          <input
+            type="text"
+            placeholder="Введите адрес"
+            value={value ? `Якутск ${value}` : ""}
+            onChange={(e) => setValue(e.target.value.replaceAll("Якутск ", ""))}
           />
-        </div>
+        </StandaloneSearchBox>
       </GoogleMap>
     </div>
   );
