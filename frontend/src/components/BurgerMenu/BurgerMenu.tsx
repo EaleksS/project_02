@@ -3,7 +3,7 @@ import styles from "./BurgerMenu.module.scss";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { Text } from "../UI/Text/Text";
 import { FaPhoneAlt } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface Props {
   isActiveMenu: boolean;
@@ -40,7 +40,9 @@ export const BurgerMenu: FC<Props> = memo(
               <Text>О нас</Text>
             </li>
             <li>
-              <Text>Доставка и оплата</Text>
+              <Text>
+                <Link to="/ship-and-pay">Доставка и оплата</Link>
+              </Text>
             </li>
             <li>
               <Text>Контакты</Text>

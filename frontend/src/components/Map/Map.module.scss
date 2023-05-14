@@ -1,4 +1,5 @@
 .map {
+  margin-top: 30px;
   height: 500px;
 
   input {
@@ -12,5 +13,9 @@
     border: 1px solid rgba($color: #000000, $alpha: 0.2);
     padding: 0 10px;
     border-radius: 8px;
+
+    @media (max-width: 600px) {
+      width: calc(100% - 65px);
+    }
   }
 }
