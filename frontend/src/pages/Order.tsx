@@ -37,7 +37,6 @@ export const Order: FC = (): JSX.Element => {
     libraries,
   });
 
-  const [map, setMap] = useState<google.maps.Map | null>(null);
   const [searchBox, setSearchBox] = useState<google.maps.places.SearchBox>();
   const [center, setCenter] = useState<Location>({
     lat: 62.02781,
@@ -46,13 +45,6 @@ export const Order: FC = (): JSX.Element => {
   const [value, setValue] = useState<string>("");
   const [isBox, setIsBox] = useState<boolean>(false);
 
-  const onLoad = (map: google.maps.Map) => {
-    setMap(map);
-  };
-
-  const onUnmount = () => {
-    setMap(null);
-  };
 
   const onSearchBoxLoad = (ref: google.maps.places.SearchBox) => {
     setSearchBox(ref);
@@ -150,8 +142,6 @@ export const Order: FC = (): JSX.Element => {
                     zoom={isBox ? 15 : 11}
                     mapContainerStyle={{ height: "300px" }}
                     options={{ disableDefaultUI: true }}
-                    onLoad={onLoad}
-                    onUnmount={onUnmount}
                   >
                     {isBox && <MarkerF position={center} />}
                   </GoogleMap>
