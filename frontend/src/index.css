@@ -21,6 +21,20 @@
   border-radius: 8px !important;
 }
 
+.row-title {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px 10px !important;
+  border-radius: 8px;
+}
+
+.faq-row {
+  border: 0 !important;
+}
+
+.faq-title {
+  border: 0 !important;
+}
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document

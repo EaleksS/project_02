@@ -55,9 +55,11 @@ export const Header: FC = memo((): JSX.Element => {
                 </Text>
               </li>
               <li>
-                <Text>Контакты</Text>
+                <Text>
+                  <Link to="/contact">Контакты</Link>
+                </Text>
               </li>
-              <li style={{textDecoration: "line-through"}}>
+              <li style={{ textDecoration: "line-through" }}>
                 <Text>Бонусы</Text>
               </li>
             </ul>
