@@ -22,10 +22,20 @@
 }
 
 .row-title {
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  /* border: 2px solid rgba(0, 0, 0, 0.1); */
+  box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.15);
+
   padding: 10px 10px !important;
   border-radius: 8px;
 }
+
+.row-title.expanded > .icon-wrapper {
+  transform: rotate(225deg) !important;
+}
+
+/* .row-title.expanded > .icon-wrapper {
+  transform: rotate(90deg) scale(1.05) !important;
+} */
 
 .faq-row {
   border: 0 !important;
@@ -33,6 +43,9 @@
 
 .faq-title {
   border: 0 !important;
+}
+.faq-row-wrapper {
+  background-color: transparent !important;
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */

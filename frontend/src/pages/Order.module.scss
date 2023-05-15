@@ -202,10 +202,15 @@ h1 {
         }
       }
 
-      button {
-        height: 50px;
-        border-radius: 2px;
-        font-size: 20px;
+      .btn {
+        display: flex;
+        flex-direction: column;
+
+        button {
+          height: 50px;
+          border-radius: 2px;
+          font-size: 20px;
+        }
       }
     }
   }

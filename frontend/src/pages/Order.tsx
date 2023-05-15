@@ -14,6 +14,8 @@ import {
   MarkerF,
 } from "@react-google-maps/api";
 import { Loader } from "../components/UI/Loader/Loader";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 interface Location {
   lat: number;
@@ -21,6 +23,14 @@ interface Location {
 }
 
 const libraries: any = ["places"];
+
+interface IFormInput {
+  name: string;
+  tel: string | number;
+  apartment: string;
+  porch: string;
+  comm: string;
+}
 
 export const Order: FC = (): JSX.Element => {
   const { profile } = useUser();
@@ -43,8 +53,9 @@ export const Order: FC = (): JSX.Element => {
     lng: 129.73242,
   });
   const [value, setValue] = useState<string>("");
-  const [isBox, setIsBox] = useState<boolean>(false);
+  const [valueErr, setValueErr] = useState<boolean>(false);
 
+  const [isBox, setIsBox] = useState<boolean>(false);
 
   const onSearchBoxLoad = (ref: google.maps.places.SearchBox) => {
     setSearchBox(ref);
@@ -70,6 +81,29 @@ export const Order: FC = (): JSX.Element => {
     }
   };
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<IFormInput>();
+
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    if (!value) {
+      toast.error("Введите адрес");
+      return;
+    }
+
+    console.log(data, value);
+    toast.success(
+      "Приветствую! Хочу вам сообщить, что ваш заказ успешно создан и сейчас находится в обработке. Команда нашего магазина уже начала его сборку, и в течение 1-2 часов ваш товар будет готов к доставке. Мы ценим ваш выбор и уверены, что вы останетесь довольны качеством нашего обслуживания. Спасибо, что выбрали наш магазин для своей покупки!"
+    );
+
+    setValue("");
+    setValueErr(false);
+    reset();
+  };
+
   return (
     <Layout>
       <div className={styles.container}>
@@ -79,7 +113,7 @@ export const Order: FC = (): JSX.Element => {
             {profile &&
               profile.basket.map((e) => <CardBasket key={e._id} {...e} />)}
           </div>
-          <form className={styles.order} onSubmit={(e) => e.preventDefault()}>
+          <form className={styles.order} onSubmit={handleSubmit(onSubmit)}>
             <div className={`${styles.cont} ${styles.contact_details}`}>
               <Text type="h3">
                 <img src="/01.svg" alt="step" /> Контактные данные
@@ -87,13 +121,21 @@ export const Order: FC = (): JSX.Element => {
               <div className={styles.label}>
                 <input
                   type="text"
-                  placeholder="Ваше имя"
+                  placeholder="Ваше имя *"
                   className={styles.input}
+                  style={errors.name ? { border: "1px solid red" } : {}}
+                  {...register("name", {
+                    required: true,
+                  })}
                 />
                 <input
                   type="tel"
-                  placeholder="Телефон"
+                  placeholder="Телефон *"
                   className={styles.input}
+                  style={errors.tel ? { border: "1px solid red" } : {}}
+                  {...register("tel", {
+                    required: true,
+                  })}
                 />
               </div>
             </div>
@@ -109,10 +151,18 @@ export const Order: FC = (): JSX.Element => {
                   >
                     <input
                       type="text"
-                      placeholder="Введите улицу и дом"
+                      placeholder="Введите улицу и дом *"
                       value={value ? `Якутск ${value}` : ""}
                       onChange={(e) =>
                         setValue(e.target.value.replaceAll("Якутск ", ""))
+                      }
+                      style={
+                        valueErr && !value
+                          ? {
+                              border: "1px solid red",
+                              width: "calc(100% - 3px)",
+                            }
+                          : { width: "calc(100% - 3px)" }
                       }
                       className={styles.input}
                     />
@@ -124,15 +174,29 @@ export const Order: FC = (): JSX.Element => {
               <div className={styles.label}>
                 <input
                   type="text"
-                  placeholder="Квартира"
+                  placeholder="Квартира *"
                   className={styles.input}
-                  style={{ width: "35%" }}
+                  style={
+                    errors.apartment
+                      ? { border: "1px solid red", width: "35%" }
+                      : { width: "35%" }
+                  }
+                  {...register("apartment", {
+                    required: true,
+                  })}
                 />
                 <input
-                  type="tel"
-                  placeholder="Подьезд/Этаж/Домофон"
+                  type="text"
+                  placeholder="Подьезд/Этаж/Домофон *"
                   className={styles.input}
-                  style={{ width: "65%" }}
+                  style={
+                    errors.porch
+                      ? { border: "1px solid red", width: "65%" }
+                      : { width: "65%" }
+                  }
+                  {...register("porch", {
+                    required: true,
+                  })}
                 />
               </div>
               <div className={styles.map}>
@@ -160,7 +224,7 @@ export const Order: FC = (): JSX.Element => {
               </Text>
               <div className={styles.payment}>
                 <div>Наличными</div>
-                <div>Онлайн оплата</div>
+                {/* <div>Онлайн оплата</div> */}
               </div>
             </div>
             <div className={`${styles.cont} ${styles.last_step}`}>
@@ -188,9 +252,17 @@ export const Order: FC = (): JSX.Element => {
                   <span>Итоговая сумма заказа</span>
                   <span>{price} ₽</span>
                 </div>
-                <textarea placeholder="Комментарий к заказу"></textarea>
+                <textarea
+                  placeholder="Комментарий к заказу"
+                  {...register("comm")}
+                ></textarea>
               </div>
-              <Button type="active">Подтвердить заказ</Button>
+              <div
+                onClick={() => !value && setValueErr(true)}
+                className={styles.btn}
+              >
+                <Button type="active">Подтвердить заказ</Button>
+              </div>
             </div>
           </form>
         </div>

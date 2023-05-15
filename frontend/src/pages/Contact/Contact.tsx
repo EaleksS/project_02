@@ -9,22 +9,24 @@ const data = {
   title: "FAQ",
   rows: [
     {
-      title: "Lorem ipsum dolor sit amet,",
-      content: "Lorem ipsum dolor sit amet, consectetur ",
-    },
-    {
-      title: "Nunc maximus, magna at ultricies elementum",
+      title: "Как купить роллы, если нет денег?",
       content:
-        "Nunc maximus, magna at ultricies elementum, risus turpis vulputate quam.",
+        "На одной раздаче - один победитель и один приз. Одна раздача игры длится 24 часа. Начало новой раздачи steam игр в 19:00 по Москве. Конкурс ежедневный - шансы выиграть есть у каждого! Победитель выбирается случайно нашим ботом, который честен и непредвзят в любое время года. Бота нельзя подкупить, договориться с ним или понравиться ему.",
     },
     {
-      title: "Curabitur laoreet, mauris vel blandit fringilla",
+      title: "Как купить роллы, если нет денег?",
       content:
-        "Curabitur laoreet, mauris vel blandit fringilla, leo elit rhoncus nunc",
+        "На одной раздаче - один победитель и один приз. Одна раздача игры длится 24 часа. Начало новой раздачи steam игр в 19:00 по Москве. Конкурс ежедневный - шансы выиграть есть у каждого! Победитель выбирается случайно нашим ботом, который честен и непредвзят в любое время года. Бота нельзя подкупить, договориться с ним или понравиться ему.",
     },
     {
-      title: "What is the package version",
-      content: "v1.0.5",
+      title: "Как купить роллы, если нет денег?",
+      content:
+        "На одной раздаче - один победитель и один приз. Одна раздача игры длится 24 часа. Начало новой раздачи steam игр в 19:00 по Москве. Конкурс ежедневный - шансы выиграть есть у каждого! Победитель выбирается случайно нашим ботом, который честен и непредвзят в любое время года. Бота нельзя подкупить, договориться с ним или понравиться ему.",
+    },
+    {
+      title: "Как купить роллы, если нет денег?",
+      content:
+        "На одной раздаче - один победитель и один приз. Одна раздача игры длится 24 часа. Начало новой раздачи steam игр в 19:00 по Москве. Конкурс ежедневный - шансы выиграть есть у каждого! Победитель выбирается случайно нашим ботом, который честен и непредвзят в любое время года. Бота нельзя подкупить, договориться с ним или понравиться ему.",
     },
   ],
 };
@@ -58,8 +60,7 @@ export const Contact: FC = (): JSX.Element => {
           <Faq
             data={data}
             config={{
-              arrowIcon: <img src="/tre2.svg" alt="tre2" />,
-
+              arrowIcon: <img src="/add.png" alt="add" width={25} height={25} />,
               tabFocus: true,
             }}
             styles={{
@@ -71,8 +72,8 @@ export const Contact: FC = (): JSX.Element => {
               rowContentTextSize: "16px",
               rowContentPaddingTop: "10px",
               rowContentPaddingBottom: "10px",
-              rowContentPaddingLeft: "50px",
-              rowContentPaddingRight: "150px",
+              rowContentPaddingLeft: "20px",
+              rowContentPaddingRight: "20px",
               arrowColor: "black",
             }}
           />
