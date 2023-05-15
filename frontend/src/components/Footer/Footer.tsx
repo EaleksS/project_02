@@ -1,6 +1,7 @@
-import { FC } from 'react';
-import styles from './Footer.module.scss';
-import { Text } from '../UI/Text/Text';
+import { FC } from "react";
+import styles from "./Footer.module.scss";
+import { Text } from "../UI/Text/Text";
+import { Link } from "react-router-dom";
 
 export const Footer: FC = (): JSX.Element => {
   return (
@@ -11,9 +12,21 @@ export const Footer: FC = (): JSX.Element => {
         </div>
         <div className={styles.nav}>
           <ul>
-            <li>О нас</li>
-            <li>Доставка и оплата</li>
-            <li>Контакты</li>
+            <li>
+              <Text>
+                <Link to="/advantages">Наши преимущества</Link>
+              </Text>
+            </li>
+            <li>
+              <Text>
+                <Link to="/ship-and-pay">Доставка и оплата</Link>
+              </Text>
+            </li>
+            <li>
+              <Text>
+                <Link to="/contact">Контакты</Link>
+              </Text>
+            </li>
           </ul>
           <div className={styles.social}>
             <img

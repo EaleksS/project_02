@@ -9,6 +9,7 @@ import { Catalog } from "./pages/Catalog";
 import { Order } from "./pages/Order";
 import { ShippingAndPayment } from "./pages/ShippingAndPayment/ShippingAndPayment";
 import { Contact } from "./pages/Contact/Contact";
+import { Advantages } from "./pages/Advantages/Advantages";
 
 function App() {
   const { getRefresh } = useAuth();
@@ -35,6 +36,7 @@ function App() {
       <Route path="/order" element={<Order />} />
       <Route path="/ship-and-pay" element={<ShippingAndPayment />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/advantages" element={<Advantages />} />
       <Route path="/products/:id" element={<Products />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

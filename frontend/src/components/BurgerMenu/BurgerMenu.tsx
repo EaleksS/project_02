@@ -37,7 +37,9 @@ export const BurgerMenu: FC<Props> = memo(
           </div>
           <ul className={styles.list}>
             <li>
-              <Text>О нас</Text>
+              <Text>
+                <Link to="/advantages">Наши преимущества</Link>
+              </Text>
             </li>
             <li>
               <Text>
@@ -45,7 +47,9 @@ export const BurgerMenu: FC<Props> = memo(
               </Text>
             </li>
             <li>
-              <Text>Контакты</Text>
+              <Text>
+                <Link to="/contact">Контакты</Link>
+              </Text>
             </li>
             <li>
               <Text>Бонусы</Text>

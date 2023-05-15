@@ -47,7 +47,9 @@ export const Header: FC = memo((): JSX.Element => {
             {/* /Burger Menu */}
             <ul className={styles.list}>
               <li>
-                <Text>О нас</Text>
+                <Text>
+                  <Link to="/advantages">Наши преимущества</Link>
+                </Text>
               </li>
               <li>
                 <Text>
