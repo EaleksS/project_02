@@ -73,10 +73,6 @@
       h3 {
         font-size: 16px;
         color: #b7b7b7;
-
-        // @media (max-width: 500px) {
-        //   font-size: 12px;
-        // }
       }
 
       .icon {
@@ -93,6 +89,10 @@
       // @media (max-width: 500px) {
       //   font-size: 20px;
       // }
+
+      @media (max-width: 800px) {
+        text-align: start;
+      }
     }
 
     .desc {
