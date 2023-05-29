@@ -5,6 +5,7 @@ import { useProduct } from "../../../store/products.store";
 import { useStore } from "../store";
 import { IProduct } from "../../../types/products.interface";
 import { useCalcDiscount } from "../../../hooks/useCalcDiscount";
+import { Loader } from "../../UI/Loader/Loader";
 
 export const Items: FC = memo((): JSX.Element => {
   const { products } = useProduct();
@@ -23,12 +24,15 @@ export const Items: FC = memo((): JSX.Element => {
 
   return (
     <div className={styles.items}>
-      {products &&
+      {products ? (
         products
           .filter((f) => f.type.includes(selectType))
           .sort((a, b) => (sort(a, b) ? 1 : -1))
           .slice(start, end)
-          .map((e) => <Card key={e._id} {...e} />)}
+          .map((e) => <Card key={e._id} {...e} />)
+      ) : (
+        <Loader className="loader-swiper" />
+      )}
     </div>
   );
 });

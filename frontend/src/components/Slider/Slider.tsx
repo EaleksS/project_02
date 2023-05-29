@@ -19,6 +19,7 @@ import { HiArrowLongLeft, HiArrowLongRight } from "react-icons/hi2";
 import { Card } from "../Card/Card";
 import { useProduct } from "../../store/products.store";
 import { useWindowDimensions } from "../../hooks/useWindowDimensions";
+import { Loader } from "../UI/Loader/Loader";
 
 SwiperCore.use([Navigation]);
 
@@ -80,14 +81,17 @@ export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
             onSlideChange={() => isActiceCards()}
             style={{ padding: "10px" }}
           >
-            {products &&
+            {products ? (
               products.slice(0, 8).map((product) => {
                 return (
                   <SwiperSlide key={product._id}>
                     <Card {...product} new={true} />
                   </SwiperSlide>
                 );
-              })}
+              })
+            ) : (
+              <Loader className="loader-swiper" />
+            )}
           </Swiper>
           {!prevActiveCards && (
             <div
@@ -120,7 +124,7 @@ export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
             onSlideChange={() => isActiceCards()}
             style={{ padding: "10px" }}
           >
-            {products &&
+            {products ? (
               products
                 .filter((f) => f.type.includes("combo"))
                 .map((e) => {
@@ -129,7 +133,10 @@ export const Slider: FC<Props> = ({ type = "banner" }): JSX.Element => {
                       <Card {...e} />
                     </SwiperSlide>
                   );
-                })}
+                })
+            ) : (
+              <Loader className="loader-swiper" />
+            )}
           </Swiper>
           {!prevActiveCards && (
             <div
