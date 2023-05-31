@@ -13,11 +13,15 @@ export class ProductsService {
   ) {}
 
   async getPhoneVerify(id: string) {
-    const response = fetch(
+    const response = await fetch(
       `https://zvonok.com/manager/cabapi_external/api/v1/phones/flashcall/?campaign_id=149850533&phone=%2B${id}&public_key=6496a0b33f8e3c5164fc703a56d7a367`,
-    ).then((res) => res.json())
+    )
 
-    return response
+    if (response.ok) {
+      return await response.json()
+    }
+
+    return new NotFoundException('Ошибка')
   }
 
   async createProduct(createProductDto: ProductDto) {
