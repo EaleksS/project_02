@@ -4,7 +4,6 @@ import { ProductModel } from './product.model'
 import { Model, Types } from 'mongoose'
 import { ProductDto } from './dto/product.dto'
 import { CommentDto } from './dto/comment.dto'
-import axios from 'axios'
 
 @Injectable()
 export class ProductsService {
@@ -12,12 +11,6 @@ export class ProductsService {
     @InjectModel(ProductModel)
     private readonly productModel: Model<ProductModel>,
   ) {}
-
-  async getPhoneVerify(id: string) {
-    return await axios.post(
-      `https://zvonok.com/manager/cabapi_external/api/v1/phones/flashcall/?campaign_id=149850533&phone=%2B${id}&public_key=6496a0b33f8e3c5164fc703a56d7a367`,
-    )
-  }
 
   async createProduct(createProductDto: ProductDto) {
     const product = new this.productModel({

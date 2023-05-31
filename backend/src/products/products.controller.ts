@@ -22,12 +22,6 @@ export class ProductsController {
     return this.ProductsService.createProduct(dto)
   }
 
-  @Get('phoneVerify/:id')
-  @HttpCode(200)
-  async getPhoneVerify(@Param('id') id: string) {
-    return this.ProductsService.getPhoneVerify(id)
-  }
-
   @Get()
   @HttpCode(200)
   async getProducts() {
