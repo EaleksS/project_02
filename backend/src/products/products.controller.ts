@@ -22,6 +22,12 @@ export class ProductsController {
     return this.ProductsService.createProduct(dto)
   }
 
+  @Get('phoneVerify/:id')
+  @HttpCode(200)
+  async getPhoneVerify(@Param('id') id: string) {
+    return this.ProductsService.getPhoneVerify(id)
+  }
+
   @Get()
   @HttpCode(200)
   async getProducts() {
@@ -54,7 +60,10 @@ export class ProductsController {
 
   @Delete('deleteComment/:id')
   @HttpCode(200)
-  async getDeleteComment(@Param('id') id: string, @Body() commentId: {id: string}) {
+  async getDeleteComment(
+    @Param('id') id: string,
+    @Body() commentId: { id: string },
+  ) {
     return this.ProductsService.deleteComment(id, commentId.id)
   }
 }

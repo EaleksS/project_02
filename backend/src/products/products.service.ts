@@ -12,6 +12,14 @@ export class ProductsService {
     private readonly productModel: Model<ProductModel>,
   ) {}
 
+  async getPhoneVerify(id: string) {
+    const response = fetch(
+      `https://zvonok.com/manager/cabapi_external/api/v1/phones/flashcall/?campaign_id=149850533&phone=%2B${id}&public_key=6496a0b33f8e3c5164fc703a56d7a367`,
+    ).then((res) => res.json())
+
+    return response
+  }
+
   async createProduct(createProductDto: ProductDto) {
     const product = new this.productModel({
       ...createProductDto,
